@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PROG_2024_TP07_Chinski_Korngold_Tjor", "PROG_2024_TP07_Chinski_Korngold_Tjor.csproj", "{FBADEE4D-47C6-4C7D-A4D3-CA99FFB3794B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PROG_2024_TP07_Chinski_Korngold_Tjor", "PROG_2024_TP07_Chinski_Korngold_Tjor.csproj", "{E20763F9-9C3E-4857-A63F-3303869C38C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FBADEE4D-47C6-4C7D-A4D3-CA99FFB3794B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBADEE4D-47C6-4C7D-A4D3-CA99FFB3794B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBADEE4D-47C6-4C7D-A4D3-CA99FFB3794B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBADEE4D-47C6-4C7D-A4D3-CA99FFB3794B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E20763F9-9C3E-4857-A63F-3303869C38C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E20763F9-9C3E-4857-A63F-3303869C38C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E20763F9-9C3E-4857-A63F-3303869C38C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E20763F9-9C3E-4857-A63F-3303869C38C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
