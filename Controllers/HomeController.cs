@@ -31,6 +31,12 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
+    public IActionResult Comenzar(string username, int dificultad, int categoria)
+    {
+        
+
+    }
+
 
 
 
