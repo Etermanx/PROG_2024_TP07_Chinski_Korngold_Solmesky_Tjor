@@ -1,4 +1,17 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Modificado de https://getbootstrap.com/docs/5.3/forms/validation/
+function configurarValidacionFormsBoostrap() {
+  const forms = document.querySelectorAll('.needs-validation');
 
-// Write your JavaScript code.
+  Array.from(forms).forEach(form => {
+    form.addEventListener("submit", event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      form.classList.add("was-validated");
+    });
+  });
+}
+
+configurarValidacionFormsBoostrap();
