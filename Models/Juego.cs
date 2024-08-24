@@ -33,16 +33,23 @@ public static class Juego
         respuestas = BD.ObtenerRespuestas(preguntas);
     }
 
-    public static Pregunta? ObtenerProximaPregunta() {
-        if (preguntas.Count > 0) {
-            Random rnd = new Random();
-            int valor_random = rnd.Next(preguntas.Count);
-            return preguntas[valor_random];
+    public static Pregunta? ObtenerProximaPregunta()
+    {
+        int valorRandom;
+        Random rnd;
+        Pregunta? proximaPregunta = null;
+
+        if (preguntas.Count > 0)
+        {
+            rnd = new Random();
+            valorRandom = rnd.Next(preguntas.Count);
+            proximaPregunta = preguntas[valorRandom];
         }
-        
+
         // cambiar bd para q las preguntas puedan ser nulas(sin cant)
-        return null;
-    
+        // |-> huh?
+        
+        return proximaPregunta;
     }
     public static List<Respuesta> ObtenerProximasRespuestas(int idPregunta)
     {
