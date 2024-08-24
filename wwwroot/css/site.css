@@ -1,11 +1,7 @@
-html {
-  font-size: 14px;
-}
+@import url("./fonts.css");
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+body {
+  font-family: "Mukta";
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {

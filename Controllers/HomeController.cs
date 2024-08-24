@@ -32,10 +32,9 @@ public class HomeController : Controller
         return View();
     }
 
-    public void Comenzar(string username, int dificultad, int categoria)
+    public IActionResult Comenzar(string username, int dificultad, int categoria)
     {
-        
-
+        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
