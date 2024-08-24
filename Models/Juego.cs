@@ -12,8 +12,8 @@ public static class Juego
         username = string.Empty;
         puntajeActual = 0;
         cantidadPreguntasCorrectas = 0;
-        preguntas.Clear();
-        respuestas.Clear();
+        preguntas = new List<Pregunta>();
+        respuestas = new List<Respuesta>();
     }
 
     public static List<Categoria> ObtenerCategorias()
@@ -42,7 +42,7 @@ public static class Juego
         if (preguntas.Count > 0)
         {
             rnd = new Random();
-            valorRandom = rnd.Next(preguntas.Count);
+            valorRandom = rnd.Next(0, preguntas.Count);
             proximaPregunta = preguntas[valorRandom];
         }
 

@@ -19,10 +19,23 @@ public class HomeController : Controller
     {
         return View();
     }
-
     public IActionResult Privacy()
     {
         return View();
+    }
+    // Debe llamar al método  de la clase Juego y retornar la View ConfigurarJuego. Por ViewBag deben viajar las categorías y dificultades!
+    public IActionResult ConfigurarJuego()
+    {
+        Juego.InicializarJuego();
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.Dificultades = BD.ObtenerDificultades();
+        return View();
+    }
+
+    public void Comenzar(string username, int dificultad, int categoria)
+    {
+        
+
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -30,18 +43,4 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-
-    public IActionResult Comenzar(string username, int dificultad, int categoria)
-    {
-        
-
-    }
-
-
-
-
-
-
-
 }
-

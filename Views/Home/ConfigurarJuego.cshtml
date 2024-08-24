@@ -1,0 +1,48 @@
+@{
+    ViewBag.Titulo = "Configurar juego";
+    /*
+    Permite configurar mediante un formulario (GET) usando select o input type radio:
+    a. Dificultad (Eligiendo una en particular, o todas → value = -1 )
+    b. Categoría (Eligiendo una en particular o todas → value = -1)
+    c. Username
+
+    Todos los campos deben ser required!
+    Debe existir un botón Jugar que invoque al método Comenzar del controller.
+    */
+}
+<form class="needs-validation" method="GET" action="@Url.Action("")" novalidate>
+    <div class="mb-3">
+        <label for="inputDificultad" class="form-label">Dificultad</label>
+        <div class="row" id="inputDificultad">
+            @foreach (Dificultad dificultad in ViewBag.Dificultades)
+            {
+                <div class="col-md form-check">
+                    <input type="radio" class="form-check-input" id="dificultad@dificultad.IdDificultad" name="Dificultad" required>
+                    <label class="form-check-label" for="dificultad@dificultad.IdDificultad">@dificultad.Nombre</label>
+                </div>
+            }
+            <div class="invalid-feedback">Seleccione una dificultad.</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="inputCategoria" class="form-label">Categoria</label>
+        <div class="row" id="inputCategoria">
+            @foreach (Categoria categoria in ViewBag.Categorias)
+            {
+                <div class="col-md form-check">
+                    <input type="radio" class="form-check-input" id="categoria@categoria.IdCategoria" name="Categoria" required>
+                    <label class="form-check-label" for="categoria@categoria.IdCategoria">@categoria.Nombre</label>
+                </div>
+            }
+            <div class="invalid-feedback">Seleccione una categoria.</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="inputUsername" class="form-label">Username</label>
+        <input type="text" class="form-control" id="inputUsername" aria-describedby="inputUsernameHelp" required>
+        <div id="inputUsernameHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <input type="submit" value="¡Jugar!">
+    </div>
+</form>
