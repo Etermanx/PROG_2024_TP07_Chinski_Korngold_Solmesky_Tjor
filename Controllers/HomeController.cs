@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using PROG_2024_TP07_Chinski_Korngold_Tjor.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace PROG_2024_TP07_Chinski_Korngold_Tjor.Controllers;
 
@@ -33,6 +34,29 @@ public class HomeController : Controller
     }
 
     public IActionResult Comenzar(string username, int dificultad, int categoria)
+    {
+        IActionResult action;
+
+        // invoca al método CargarPartida de la clase Juego y, siempre y cuando lleguen preguntas de la base de datos, redirige el sitio al ActionResult Jugar. En caso de elegir una configuración sin preguntas en base de datos, debe redirigir nuevamente al ActionResult ConfigurarJuego.
+        if (username == String.Empty && dificultad <= 0 && categoria <= 0)
+        {
+            Juego.CargarPartida(username, dificultad, categoria);
+            if (Juego.preguntas.Count > 0)
+                action = RedirectToAction("Jugar");
+            else
+                ViewBag.Error = "Erm... La base de datos no tiene preguntas para esta dificultad/categoria...";
+        }
+        else
+            ViewBag.Error = "¡Debés completar todos los campos!";
+
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.Dificultades = BD.ObtenerDificultades();
+        action = View("ConfigurarJuego");
+
+        return action;
+    }
+
+    public IActionResult Jugar()
     {
         return View();
     }

@@ -33,7 +33,7 @@ public static class BD
     {
         using(SqlConnection BD = new SqlConnection(CONNECTION_STRING))
         {
-            string sql = "SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificultad) AND (@categoria = -1 OR IdCategoria = @categoria";
+            string sql = "SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificultad) AND (@categoria = -1 OR IdCategoria = @categoria)";
             _ListadoPreguntas = BD.Query<Pregunta>(sql, new {dificultad, categoria} ).ToList();
         }
 

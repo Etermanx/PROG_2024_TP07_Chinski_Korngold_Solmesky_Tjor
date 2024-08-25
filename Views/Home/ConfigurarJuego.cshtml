@@ -1,18 +1,13 @@
 @{
     ViewBag.Titulo = "Configurar juego";
-    /*
-    Permite configurar mediante un formulario (GET) usando select o input type radio:
-    a. Dificultad (Eligiendo una en particular, o todas → value = -1 )
-    b. Categoría (Eligiendo una en particular o todas → value = -1)
-    c. Username
-
-    Todos los campos deben ser required!
-    Debe existir un botón Jugar que invoque al método Comenzar del controller.
-    */
 }
 <div class="container fueraJuego">
     <h1>Configurar</h1>
     <form class="needs-validation" method="GET" action="@Url.Action("Comenzar")" novalidate>
+        @if (ViewBag.Error != null)
+        {
+            <p class="mb-3 alert alert-danger" role="alert">@ViewBag.Error</p>
+        }
         <div class="mb-3">
             <h2>Dificultad</h2>
             <div class="row">
