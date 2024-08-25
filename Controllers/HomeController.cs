@@ -35,13 +35,11 @@ public class HomeController : Controller
 
     public IActionResult Comenzar(string username, int dificultad, int categoria)
     {
-        IActionResult action;
-
         if (username != String.Empty && (dificultad > 0 || dificultad == -1) && (categoria > 0 || categoria == -1))
         {
             Juego.CargarPartida(username, dificultad, categoria);
             if (Juego.preguntas.Count > 0)
-                action = RedirectToAction("Jugar");
+                return RedirectToAction("Jugar");
             else
                 ViewBag.Error = "Erm... La base de datos no tiene preguntas para esta dificultad/categoria...";
         }
@@ -50,9 +48,7 @@ public class HomeController : Controller
 
         ViewBag.Categorias = BD.ObtenerCategorias();
         ViewBag.Dificultades = BD.ObtenerDificultades();
-        action = View("ConfigurarJuego");
-
-        return action;
+        return View("ConfigurarJuego");
     }
 
     public IActionResult Jugar()
