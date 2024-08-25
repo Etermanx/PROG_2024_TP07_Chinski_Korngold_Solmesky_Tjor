@@ -39,17 +39,14 @@ public static class BD
 
     public static List<Respuesta> ObtenerRespuestas(List<Pregunta> preguntas)
     {
-        string sql = "SELECT * FROM Respuestas WHERE IdPregunta IN (@pIdPreguntas);";
+        string sql = "SELECT * FROM Respuestas WHERE IdPregunta IN @pIdPreguntas;";
         string stringIdPreguntas;
-        int[] idPreguntas;
+        int[] idPreguntas = ExtraerIdPreguntas(preguntas);
         List<Respuesta> listadoRespuestas;
-
-        idPreguntas = ExtraerIdPreguntas(preguntas);
-        stringIdPreguntas = string.Join(", ", idPreguntas);
         
         using(SqlConnection BD = new SqlConnection(CONNECTION_STRING))
         {
-            listadoRespuestas = BD.Query<Respuesta>(sql, new { pIdPreguntas = stringIdPreguntas }).ToList();
+            listadoRespuestas = BD.Query<Respuesta>(sql, new { pIdPreguntas = idPreguntas }).ToList();
         }
 
         return listadoRespuestas;
