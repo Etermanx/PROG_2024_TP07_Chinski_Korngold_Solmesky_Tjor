@@ -24,7 +24,7 @@ public class HomeController : Controller
     {
         return View();
     }
-    // Debe llamar al método  de la clase Juego y retornar la View ConfigurarJuego. Por ViewBag deben viajar las categorías y dificultades!
+
     public IActionResult ConfigurarJuego()
     {
         Juego.InicializarJuego();
@@ -37,7 +37,6 @@ public class HomeController : Controller
     {
         IActionResult action;
 
-        // invoca al método CargarPartida de la clase Juego y, siempre y cuando lleguen preguntas de la base de datos, redirige el sitio al ActionResult Jugar. En caso de elegir una configuración sin preguntas en base de datos, debe redirigir nuevamente al ActionResult ConfigurarJuego.
         if (username == String.Empty && dificultad <= 0 && categoria <= 0)
         {
             Juego.CargarPartida(username, dificultad, categoria);

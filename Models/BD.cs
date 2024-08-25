@@ -5,7 +5,6 @@ using Dapper;
 public static class BD
 {
     const string CONNECTION_STRING = @"Server=localhost;Database=PreguntadOrt;Trusted_Connection=True;";
-
     
     public static List<Categoria> ObtenerCategorias()
     {   
@@ -16,8 +15,6 @@ public static class BD
         }
     }
 
-
-    
     public static List<Dificultad> ObtenerDificultades()
     {
         using (SqlConnection BD = new SqlConnection(CONNECTION_STRING))
@@ -27,18 +24,17 @@ public static class BD
         }
     }
 
-
-    public static List<Pregunta> _ListadoPreguntas = new List<Pregunta>();
     public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria)
     {
+        string sql = "SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificultad) AND (@categoria = -1 OR IdCategoria = @categoria)";
+        List<Pregunta> listadoPreguntas = new List<Pregunta>();
+
         using(SqlConnection BD = new SqlConnection(CONNECTION_STRING))
         {
-            string sql = "SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificultad) AND (@categoria = -1 OR IdCategoria = @categoria)";
-            _ListadoPreguntas = BD.Query<Pregunta>(sql, new {dificultad, categoria} ).ToList();
+            listadoPreguntas = BD.Query<Pregunta>(sql, new {dificultad, categoria} ).ToList();
         }
 
-        return _ListadoPreguntas;
-
+        return listadoPreguntas;
     }
 
     public static List<Respuesta> ObtenerRespuestas(List<Pregunta> preguntas)
