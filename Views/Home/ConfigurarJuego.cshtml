@@ -10,17 +10,21 @@
         }
         <div class="mb-3">
             <h2>Dificultad</h2>
-            <div class="row">
+            <div class="row row-cols-sm-4">
                 @if (ViewBag.Dificultades.Count > 0)
                 {
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="dificultad-todas" name="dificultad" value="-1" checked required>
+                        <label class="form-check-label" for="dificultad-todas">Todas</label>
+                    </div>
                     foreach (Dificultad dificultad in ViewBag.Dificultades)
                     {
-                        <div class="col-md form-check">
-                            <input type="radio" class="form-check-input" id="dificultad@dificultad.IdDificultad" name="dificultad" required>
-                            <label class="form-check-label" for="dificultad@dificultad.IdDificultad">@dificultad.Nombre</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="dificultad-@dificultad.IdDificultad" name="dificultad" value="@dificultad.IdDificultad" required>
+                            <label class="form-check-label" for="dificultad-@dificultad.IdDificultad">@dificultad.Nombre</label>
                         </div>
                     }
-                    <div class="invalid-feedback">Seleccione una dificultad.</div>
+                    <p class="invalid-feedback">Seleccione una dificultad.</p>
                 }
                 else
                 {
@@ -30,17 +34,34 @@
         </div>
         <div class="mb-3">
             <h2>Categoría</h2>
-            <div class="row">
+            <div class="row row-cols-lg-3">
                 @if (ViewBag.Categorias.Count > 0)
                 {
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="categoria-todas" name="categoria" value="-1" checked required>
+                        <label class="form-check-label" for="categoria-todas">
+                            <img src="~/img/icono.png" alt="Icono de todas">
+                            <span>Todas</span>
+                        </label>
+                    </div>
                     foreach (Categoria categoria in ViewBag.Categorias)
                     {
-                        <div class="col-md form-check">
-                            <input type="radio" class="form-check-input" id="categoria@categoria.IdCategoria" name="categoria" required>
-                            <label class="form-check-label" for="categoria@categoria.IdCategoria">@categoria.Nombre</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="categoria-@categoria.IdCategoria" name="categoria" value="@categoria.IdCategoria" required>
+                            <label class="form-check-label" for="categoria-@categoria.IdCategoria">
+                                @if (categoria.Foto != null)
+                                {
+                                    <img src="@categoria.Foto" alt="Icono de @categoria.Nombre">
+                                }
+                                else
+                                {
+                                    <img src="~/img/placeholder.bmp" alt="Placeholder">
+                                }
+                                <span>@categoria.Nombre</span>
+                            </label>
                         </div>
                     }
-                    <div class="invalid-feedback">Seleccione una categoría.</div>
+                    <p class="invalid-feedback">Seleccione una categoría.</p>
                 }
                 else
                 {
@@ -51,7 +72,7 @@
         <div class="mb-3">
             <h2>Username</h2>
             <input type="text" class="form-control" name="username" placeholder="historia" required>
-            <div class="invalid-feedback">Seleccione una categoria.</div>
+            <p class="invalid-feedback">Seleccione un nombre de usuario.</p>
         </div>
         <div>
             <input class="btn btn-primary" type="submit" value="¡Jugar!">

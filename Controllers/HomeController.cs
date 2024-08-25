@@ -37,7 +37,7 @@ public class HomeController : Controller
     {
         IActionResult action;
 
-        if (username == String.Empty && dificultad <= 0 && categoria <= 0)
+        if (username != String.Empty && (dificultad > 0 || dificultad == -1) && (categoria > 0 || categoria == -1))
         {
             Juego.CargarPartida(username, dificultad, categoria);
             if (Juego.preguntas.Count > 0)
