@@ -10,54 +10,56 @@
     Debe existir un botón Jugar que invoque al método Comenzar del controller.
     */
 }
-<h1>Configurar</h1>
-<form class="needs-validation" method="GET" action="@Url.Action("Comenzar")" novalidate>
-    <div class="mb-3">
-        <h2>Dificultad</h2>
-        <div class="row">
-            @if (ViewBag.Dificultades.Count > 0)
-            {
-                foreach (Dificultad dificultad in ViewBag.Dificultades)
+<div class="container fueraJuego">
+    <h1>Configurar</h1>
+    <form class="needs-validation" method="GET" action="@Url.Action("Comenzar")" novalidate>
+        <div class="mb-3">
+            <h2>Dificultad</h2>
+            <div class="row">
+                @if (ViewBag.Dificultades.Count > 0)
                 {
-                    <div class="col-md form-check">
-                        <input type="radio" class="form-check-input" id="dificultad@dificultad.IdDificultad" name="dificultad" required>
-                        <label class="form-check-label" for="dificultad@dificultad.IdDificultad">@dificultad.Nombre</label>
-                    </div>
+                    foreach (Dificultad dificultad in ViewBag.Dificultades)
+                    {
+                        <div class="col-md form-check">
+                            <input type="radio" class="form-check-input" id="dificultad@dificultad.IdDificultad" name="dificultad" required>
+                            <label class="form-check-label" for="dificultad@dificultad.IdDificultad">@dificultad.Nombre</label>
+                        </div>
+                    }
+                    <div class="invalid-feedback">Seleccione una dificultad.</div>
                 }
-                <div class="invalid-feedback">Seleccione una dificultad.</div>
-            }
-            else
-            {
-                <p class="text-secondary">No hay dificultades :/</p>
-            }
-        </div>
-    </div>
-    <div class="mb-3">
-        <h2>Categoría</h2>
-        <div class="row">
-            @if (ViewBag.Categorias.Count > 0)
-            {
-                foreach (Categoria categoria in ViewBag.Categorias)
+                else
                 {
-                    <div class="col-md form-check">
-                        <input type="radio" class="form-check-input" id="categoria@categoria.IdCategoria" name="categoria" required>
-                        <label class="form-check-label" for="categoria@categoria.IdCategoria">@categoria.Nombre</label>
-                    </div>
+                    <p class="text-secondary">No hay dificultades :/</p>
                 }
-                <div class="invalid-feedback">Seleccione una categoría.</div>
-            }
-            else
-            {
-                <p class="text-secondary">No hay categorias :/</p>
-            }
+            </div>
         </div>
-    </div>
-    <div class="mb-3">
-        <h2>Username</h2>
-        <input type="text" class="form-control" name="username" placeholder="historia" required>
-        <div class="invalid-feedback">Seleccione una categoria.</div>
-    </div>
-    <div>
-        <input class="btn btn-primary" type="submit" value="¡Jugar!">
-    </div>
-</form>
+        <div class="mb-3">
+            <h2>Categoría</h2>
+            <div class="row">
+                @if (ViewBag.Categorias.Count > 0)
+                {
+                    foreach (Categoria categoria in ViewBag.Categorias)
+                    {
+                        <div class="col-md form-check">
+                            <input type="radio" class="form-check-input" id="categoria@categoria.IdCategoria" name="categoria" required>
+                            <label class="form-check-label" for="categoria@categoria.IdCategoria">@categoria.Nombre</label>
+                        </div>
+                    }
+                    <div class="invalid-feedback">Seleccione una categoría.</div>
+                }
+                else
+                {
+                    <p class="text-secondary">No hay categorias :/</p>
+                }
+            </div>
+        </div>
+        <div class="mb-3">
+            <h2>Username</h2>
+            <input type="text" class="form-control" name="username" placeholder="historia" required>
+            <div class="invalid-feedback">Seleccione una categoria.</div>
+        </div>
+        <div>
+            <input class="btn btn-primary" type="submit" value="¡Jugar!">
+        </div>
+    </form>
+</div>

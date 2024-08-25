@@ -1,8 +1,10 @@
 ﻿@{
-    ViewBag.Titulo = "Home Page";
+    ViewBag.Titulo = "Tantas preguntas, tan pocas respuestas";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container text-center index position-absolute top-50 start-50 translate-middle">
+    <img class="logo" src="~/img/logo.png" alt="Logo de PreguntadOrt">
+    <h1 class="fs-3">Tantas preguntas, tan pocas respuestas</h1>
+    <p class="fs-4">Poné a prueba tus conocimientos</p>
+    <p><a class="btn btn-dark fs-3" href="@Url.Action("ConfigurarJuego")">Iniciar juego</a></p>
 </div>
