@@ -1,11 +1,45 @@
 @{
     ViewBag.Titulo = "Jugar";
 }
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+<div class="container">
+  <div class="card">
+        @if (ViewBag.ProximaPregunta.Foto != null)
+        {
+            <img src="@ViewBag.ProximaPregunta.Foto" class="card-img-top" alt="Foto de la pregunta">
+        }
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.ProximaPregunta.Enunciado</h5>
+        </div>
+    </div>
+    <form class="needs-validation" method="POST" action="@Url.Action("VerificarRespuesta")" novalidate>
+        <input type="hidden" name="idPregunta" value="@ViewBag.ProximaPregunta.IdPregunta">
+        <div class="mb-3">
+            <div class="row row-cols-lg-3">
+                @if (ViewBag.ProximasRespuestas.Count > 0)
+                {
+                    foreach (Respuesta respuesta in ViewBag.ProximasRespuestas)
+                    {
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="respuesta-@respuesta.Opcion" name="idRespuesta" value="@respuesta.IdRespuesta" required>
+                            <label class="form-check-label" for="respuesta-@respuesta.Opcion">
+                                @if (respuesta.Foto != null)
+                                {
+                                    <img src="@respuesta.Foto" alt="Foto de @respuesta.Contenido">
+                                }
+                                <span>@respuesta.Contenido (p: @respuesta.IdPregunta)</span>
+                            </label>
+                        </div>
+                    }
+                    <p class="invalid-feedback">Seleccione una categoría.</p>
+                }
+                else
+                {
+                    <p class="text-secondary">¿No hay respuestas?</p>
+                }
+            </div>
+        </div>
+        <div>
+            <input class="btn btn-primary" type="submit" value="Comprobar">
+        </div>
+    </form>
 </div>

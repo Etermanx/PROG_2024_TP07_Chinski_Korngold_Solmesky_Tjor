@@ -58,7 +58,7 @@ public class HomeController : Controller
         if (ViewBag.ProximaPregunta != null)
         {
             ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
-            return View("Juego");
+            return View("Jugar");
         }
         else
             return View("Fin");
