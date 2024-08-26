@@ -1,12 +1,22 @@
 @{
     if (ViewBag.Respuesta)
-        ViewBag.Mensaje = "¡Enhorabuena!";
+        ViewBag.Mensaje = "Tu respuesta es correcta";
     else
         ViewBag.Mensaje = "Seguí participando";
 
     ViewBag.Titulo = ViewBag.Mensaje;
 }
 
-<div class="container">
-    <h1>@ViewBag.Mensaje</h1>
+<div class="centrado">
+    <h1>Muy bien</h1>
+    <p>@ViewBag.Mensaje</p>
+    
+    <div>
+        <a class="boton" href="@Url.Action("ConfigurarJuego")">🔄 Volver a jugar</a>
+        <a class="boton" href="@Url.Action("Creditos")">👥 Créditos</a>
+    </div>
+
+    <div class="imagenInteractiva">
+        <a id="ustedes" href="https://www.youtube.com/watch?v=jZiYZbh78uY"><img src="~/img/Winner.jpg" alt="Fernanfloo (ustedes)"></a>
+    </div>
 </div>
