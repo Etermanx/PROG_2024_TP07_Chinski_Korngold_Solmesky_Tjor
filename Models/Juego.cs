@@ -6,6 +6,7 @@ public static class Juego
     public static int cantidadPreguntasCorrectas { get; private set; }
     public static List<Pregunta> preguntas { get; private set; }
     private static List<Respuesta> respuestas { get; set; }
+    private static int posCorrecta { get; set; }
 
     public static void InicializarJuego()
     {
@@ -62,23 +63,37 @@ public static class Juego
 
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-        int posRespuesta = BuscarRespuesta(idPregunta, idRespuesta);
-        bool correcta = posRespuesta != -1 && respuestas[posRespuesta].Correcta;
+        int posCorrecta = BuscarRespuestaCorrecta(idPregunta);
+        bool correcta = posCorrecta != -1 && idRespuesta == posCorrecta;
 
         if (correcta)
         {
             puntajeActual += SUMA_PUNTAJE;
             cantidadPreguntasCorrectas++;
-            preguntas.RemoveAt(posRespuesta);
+            preguntas.RemoveAt(BuscarPregunta(idPregunta));
         }
 
         return correcta;
     }
+    public static Respuesta? MostrarRespuestaCorrecta()
+    {
+        Respuesta? respuestaCorrecta = null;
+        if (posCorrecta != -1)
+            respuestaCorrecta = respuestas[posCorrecta];
+        return respuestaCorrecta;
+    }
 
-    private static int BuscarRespuesta(int idPregunta, int idRespuesta)
+    private static int BuscarPregunta(int idPregunta)
+    {
+        int posPregunta = preguntas.Count - 1;
+        while (posPregunta >= 0 && idPregunta != preguntas[posPregunta].IdPregunta)
+            posPregunta--;
+        return posPregunta;
+    }
+    private static int BuscarRespuestaCorrecta(int idPregunta)
     {
         int posRespuesta = respuestas.Count - 1;
-        while (posRespuesta >= 0 && idPregunta != respuestas[posRespuesta].IdPregunta && idRespuesta != respuestas[posRespuesta].IdRespuesta)
+        while (posRespuesta >= 0 && idPregunta != respuestas[posRespuesta].IdPregunta && !respuestas[posRespuesta].Correcta)
             posRespuesta--;
         return posRespuesta;
     }
