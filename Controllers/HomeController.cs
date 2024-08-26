@@ -20,7 +20,7 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult Privacy()
+    public IActionResult PoliticaPrivacidad()
     {
         return View();
     }
@@ -53,16 +53,15 @@ public class HomeController : Controller
 
     public IActionResult Jugar()
     {
-        ViewBag.ObtenerPreguntas = Juego.ObtenerProximaPregunta();
-        ViewBag.ObtenerIdPreguntas  = ViewBag.ObtenerPreguntas.IdPregunta;
+        ViewBag.ProximaPregunta = Juego.ObtenerProximaPregunta();
 
-        if(ViewBag.ObtenerPreguntas.Count == 0){
-            return View("Fin");
-        }
-        else{
-            ViewBag.ObtenerRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ObtenerIdPreguntas);
+        if (ViewBag.ProximaPregunta != null)
+        {
+            ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
             return View("Juego");
         }
+        else
+            return View("Fin");
     }
 
     [HttpPost]
