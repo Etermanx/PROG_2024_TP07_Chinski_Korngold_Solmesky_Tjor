@@ -1,0 +1,12 @@
+@{
+    if (ViewBag.Respuesta)
+        ViewBag.Mensaje = "¡Enhorabuena!";
+    else
+        ViewBag.Mensaje = "Seguí participando";
+
+    ViewBag.Titulo = ViewBag.Mensaje;
+}
+
+<div class="container">
+    <h1>@ViewBag.Mensaje</h1>
+</div>
