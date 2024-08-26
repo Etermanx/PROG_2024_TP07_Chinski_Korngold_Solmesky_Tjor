@@ -53,7 +53,16 @@ public class HomeController : Controller
 
     public IActionResult Jugar()
     {
-        return View();
+        ViewBag.ObtenerPreguntas = Juego.ObtenerProximaPregunta();
+        ViewBag.ObtenerIdPreguntas  = ViewBag.ObtenerPreguntas.IdPregunta;
+
+        if(ViewBag.ObtenerPreguntas.Count == 0){
+            return View("Fin");
+        }
+        else{
+            ViewBag.ObtenerRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ObtenerIdPreguntas);
+            return View("Juego");
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -61,4 +70,5 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+    
 }

@@ -52,7 +52,7 @@ public static class BD
         return listadoRespuestas;
     }
 
-    private static int[] ExtraerIdPreguntas(List<Pregunta> preguntas)
+    public static int[] ExtraerIdPreguntas(List<Pregunta> preguntas)
     {
         int cantPreguntas = preguntas.Count;
         int[] idPreguntas = new int[cantPreguntas];
