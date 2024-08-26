@@ -1,42 +1,39 @@
 @font-face {
-    font-family: "Mukta";
-    src: url("../fonts/Mukta/Mukta-ExtraLight.ttf");
-    font-weight: 200;
-    font-style: normal;
+  font-family: "mikado";
+  src: url("../fonts/mikado-font-family-1724680766-0/HvDTrial_Mikado-Black-BF65c194eb898ed.otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mikado";
+  src: url("../fonts/mikado-font-family-1724680766-0/HvDTrial_Mikado-Bold-BF65c194eb8b644.otf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mikado";
+  src: url("../fonts/mikado-font-family-1724680766-0/HvDTrial_Mikado-Light-BF65c194eb834dc.otf");
+  font-weight: 300;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Mukta";
-    src: url("../fonts/Mukta/Mukta-Light.ttf");
-    font-weight: 300;
-    font-style: normal;
+  font-family: "mikado";
+  src: url("../fonts/mikado-font-family-1724680766-0/HvDTrial_Mikado-Medium-BF65c194eb9f610.otf");
+  font-weight: 500;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Mukta";
-    src: url("../fonts/Mukta/Mukta-Regular.ttf");
-    font-weight: 400;
-    font-style: normal;
+  font-family: "mikado";
+  src: url("../fonts/mikado-font-family-1724680766-0/HvDTrial_Mikado-Regular-BF65c194eb0d360.otf");
+  font-weight: 400;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: "Mukta";
-    src: url("../fonts/Mukta/Mukta-Medium.ttf");
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: "Mukta";
-    src: url("../fonts/Mukta/Mukta-SemiBold.ttf");
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: "Mukta";
-    src: url("../fonts/Mukta/Mukta-Bold.ttf");
-    font-weight: 700;
-    font-style: normal;
-}
-@font-face {
-    font-family: "Mukta";
-    src: url("../fonts/Mukta/Mukta-ExtraBold.ttf");
-    font-weight: 700;
-    font-style: normal;
+  font-family: "mikado";
+  src: url("../fonts/mikado-font-family-1724680766-0/HvDTrial_Mikado-Ultra-BF65c194eb9190a.otf");
+  font-weight: 700;
+  font-style: normal;
 }
