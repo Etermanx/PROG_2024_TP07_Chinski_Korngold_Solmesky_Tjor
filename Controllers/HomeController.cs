@@ -56,6 +56,19 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
+    public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
+    {
+        if (idPregunta > 0 && idRespuesta > 0)
+        {
+            ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
+            ViewBag.Correcta = Juego.MostrarRespuestaCorrecta();
+            return View("Respuesta");
+        }
+        else
+            return RedirectToAction("Jugar");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
