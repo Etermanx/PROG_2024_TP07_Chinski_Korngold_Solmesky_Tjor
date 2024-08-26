@@ -96,3 +96,36 @@ footer p:first-child {
     max-width: 100vw;
   }
 }
+body{
+
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: #a7d6ff;
+}
+button{
+
+  color: white;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 0.8em 2em;
+  background: black;
+  transition: 0.2s;
+
+}
+
+button:hover{
+
+  color: black;
+  background: orange;
+  transform: translate(-0.25rem, -0.25rem);
+  box-shadow: 0.25rem 0.25rem black;
+
+}
+
+.button:active{
+
+  transform: translate(0);
+  box-shadow: none;
+}
