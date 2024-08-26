@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/PROG_2024_TP07_Chinski_Korngold_Tjor.generated.sln",
+                "${workspaceFolder}/PROG_2024_TP07_Chinski_Korngold_Tjor.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/PROG_2024_TP07_Chinski_Korngold_Tjor.generated.sln",
+                "${workspaceFolder}/PROG_2024_TP07_Chinski_Korngold_Tjor.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/PROG_2024_TP07_Chinski_Korngold_Tjor.generated.sln"
+                "${workspaceFolder}/PROG_2024_TP07_Chinski_Korngold_Tjor.sln"
             ],
             "problemMatcher": "$msCompile"
         }
