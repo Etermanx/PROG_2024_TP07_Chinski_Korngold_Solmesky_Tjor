@@ -40,7 +40,6 @@ public static class BD
     public static List<Respuesta> ObtenerRespuestas(List<Pregunta> preguntas)
     {
         string sql = "SELECT * FROM Respuestas WHERE IdPregunta IN @pIdPreguntas;";
-        string stringIdPreguntas;
         int[] idPreguntas = ExtraerIdPreguntas(preguntas);
         List<Respuesta> listadoRespuestas;
         
