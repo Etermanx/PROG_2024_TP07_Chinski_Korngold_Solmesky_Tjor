@@ -1,3 +1,3 @@
 USE PreguntadOrt
 
-INSERT INTO Dificultades(Nombre) VALUES ('¿Huh?'), ('Regular'), ('Prueba');
+INSERT INTO Dificultades(Nombre) VALUES ('Facil'), ('Medio'), ('Dificil');
