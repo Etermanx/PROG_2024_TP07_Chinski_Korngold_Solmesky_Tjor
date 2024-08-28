@@ -114,10 +114,10 @@ footer {
   bottom: 0;
   width: 100%;
 }
-footer .row:first-child {
-  font-family: "Comic Sans MS", cursive;
+a{
+  text-decoration: none;
+  color:white
 }
-
 
 @media screen and (max-width: 768px) {
   main .logo { width: 100%; }
