@@ -8,22 +8,16 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-    <nav>
-        <a class="navbar-brand" href="@Url.Action("")"><img src="~/img/icono.png" alt="Icono de PreguntOrt"></a>
-        <a class ="botoncheto" asp-area="" asp-controller="Home" asp-action="Index" > Home </a>
-        <a class = "botoncheto" asp-area="" asp-controller="Home" asp-action="ConfigurarJuego"> Iniciar juego </a>
-    </nav>
-    </header>
-    
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 
     <footer class="footer text-center text-light bg-dark">
         <div class="container">
-            <p>&copy;2024 Etermax</p>
-            <p><a href="@Url.Action("PoliticaPrivacidad")">Politica De Privacidad</a></p>
+            <div class="row">
+                <div class="col-6"><p>&copy;2024 Etermax</p></div>
+                <div class="col-6"><p><a href="@Url.Action("PoliticaPrivacidad")">Politica De Privacidad</a></p></div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
