@@ -69,8 +69,9 @@ public class HomeController : Controller
     {
         if (idPregunta > 0 && idRespuesta > 0)
         {
+            ViewBag.ProximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
             ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
-            ViewBag.Correcta = Juego.MostrarRespuestaCorrecta();
+            ViewBag.Correcta = Juego.ObtenerRespuestaCorrecta();
             return View("Respuesta");
         }
         else
