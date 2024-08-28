@@ -1,22 +1,22 @@
 @{
-    if (ViewBag.Respuesta)
+    if (ViewBag.Respuesta == true)
         ViewBag.Mensaje = "Tu respuesta es correcta";
     else
-        ViewBag.Mensaje = "Seguí participando";
+        ViewBag.Mensaje = "Segui participando";
 
     ViewBag.Titulo = ViewBag.Mensaje;
 }
 
-<div class="centrado">
-    <h1>Muy bien</h1>
-    <p>@ViewBag.Mensaje</p>
-    
-    <div>
-        <a class="boton" href="@Url.Action("ConfigurarJuego")">🔄 Volver a jugar</a>
-        <a class="boton" href="@Url.Action("Creditos")">👥 Créditos</a>
+<div class="container">
+    <div class="card">
+        @if (ViewBag.ProximaPregunta.Foto != null)
+        {
+            <img src="@ViewBag.ProximaPregunta.Foto" class="card-img-top" alt="Foto de la pregunta">
+        }
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.ProximaPregunta.Enunciado</h5>
+        </div>
     </div>
-
-    <div class="imagenInteractiva">
-        <a id="ustedes" href="https://www.youtube.com/watch?v=jZiYZbh78uY"><img src="~/img/Winner.jpg" alt="Fernanfloo (ustedes)"></a>
-    </div>
+    <h1>@ViewBag.Mensaje</h1>
+    <p>@ViewBag.Correcta.Contenido</p>
 </div>

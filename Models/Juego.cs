@@ -61,6 +61,10 @@ public static class Juego
         return proximasRespuestas;
     }
 
+    public static Pregunta ObtenerPreguntaLista(int idPregunta)
+    {
+        return preguntas[BuscarPregunta(idPregunta)];
+    }
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
         int posCorrecta = BuscarRespuestaCorrecta(idPregunta);
@@ -75,7 +79,7 @@ public static class Juego
 
         return correcta;
     }
-    public static Respuesta? MostrarRespuestaCorrecta()
+    public static Respuesta? ObtenerRespuestaCorrecta()
     {
         Respuesta? respuestaCorrecta = null;
         if (posCorrecta != -1)
