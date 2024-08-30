@@ -43,7 +43,7 @@ VALUES
     (10, 3, 'Electromagnetica', 0, NULL),
     (10, 4, 'Potencial', 0, NULL),
     (11, 1, 'Combatir infecciones y enfermedades', 0, NULL),
-    (11, 2, 'Transportar oxígeno desde los pulmones a los tejidos y devolver dióxido de carbono desde los tejidos a los pulmones.', 1, NULL),
+    (11, 2, 'Transportar oxígeno desde los pulmones al cuerpo', 1, NULL),
     (11, 3, 'Coagular la sangre para prevenir hemorragias.', 0, NULL),
     (11, 4, 'Producir hormonas para regular el metabolismo.', 0, NULL),
     (12, 1, 'Oro', 1, NULL),
