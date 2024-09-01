@@ -70,6 +70,7 @@ public static class Juego
             if (respuesta.IdPregunta == idPregunta)
                 proximasRespuestas.Add(respuesta);
         return proximasRespuestas;
+        
     }
 
     public static Pregunta ObtenerPreguntaLista(int idPregunta)
@@ -78,8 +79,7 @@ public static class Juego
     }
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-        int posCorrecta = BuscarRespuestaCorrecta(idPregunta);
-        bool correcta = posCorrecta != -1 && idRespuesta == posCorrecta;
+        bool correcta = BuscarRespuestaCorrecta(idRespuesta);
 
         if (correcta)
         {
@@ -90,11 +90,12 @@ public static class Juego
 
         return correcta;
     }
-    public static Respuesta? ObtenerRespuestaCorrecta()
+    public static string? ObtenerRespuestaCorrecta(int idPregunta)
     {
-        Respuesta? respuestaCorrecta = null;
-        if (posCorrecta != -1)
-            respuestaCorrecta = respuestas[posCorrecta];
+        string? respuestaCorrecta = null;
+
+        respuestaCorrecta = BD.RespuestaCorrecta(idPregunta);
+        
         return respuestaCorrecta;
     }
 
@@ -105,11 +106,12 @@ public static class Juego
             posPregunta--;
         return posPregunta;
     }
-    private static int BuscarRespuestaCorrecta(int idPregunta)
+    private static bool BuscarRespuestaCorrecta(int idRespuesta)
     {
-        int posRespuesta = respuestas.Count - 1;
-        while (posRespuesta >= 0 && idPregunta != respuestas[posRespuesta].IdPregunta && !respuestas[posRespuesta].Correcta)
-            posRespuesta--;
-        return posRespuesta;
+
+        bool correcto = BD.EsCorrecta(idRespuesta);
+        return correcto;
+
+        
     }
 }

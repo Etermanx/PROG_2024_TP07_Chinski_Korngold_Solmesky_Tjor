@@ -61,4 +61,25 @@ public static class BD
 
         return idPreguntas;
     }
+
+    public static bool EsCorrecta(int idRespuesta){
+        bool Correcta=false;
+        using(SqlConnection db = new SqlConnection(CONNECTION_STRING)){
+            string sql= "Select Correcta from Respuestas where IdRespuesta=@pIdRespuesta";
+            Correcta = db.QueryFirstOrDefault<bool>(sql, new{pIdRespuesta=idRespuesta});
+        }
+        return Correcta;
+    }
+
+    public static string RespuestaCorrecta(int idPregunta){
+
+        string respuestaCorrecta = null;
+        using(SqlConnection db = new SqlConnection(CONNECTION_STRING)){
+            string sql= "SELECT Contenido from Preguntas INNER JOIN Respuestas ON Preguntas.IdPregunta = Respuestas.IdPregunta where Preguntas.IdPregunta = @pIdPregunta AND Correcta = 1";
+            respuestaCorrecta = db.QueryFirstOrDefault<string>(sql, new{pIdPregunta=idPregunta});
+        }
+
+        return respuestaCorrecta;
+
+    }
 }
