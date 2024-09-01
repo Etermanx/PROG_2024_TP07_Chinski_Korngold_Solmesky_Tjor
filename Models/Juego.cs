@@ -4,8 +4,9 @@ public static class Juego
     public static string username { get; private set; }
     public static int puntajeActual { get; private set; }
     public static int cantidadPreguntasCorrectas { get; private set; }
-    public static List<Pregunta> preguntas { get; private set; }
+    private static List<Pregunta> preguntas { get; set; }
     private static List<Respuesta> respuestas { get; set; }
+    private static bool categoriaEsTodo { get; set; }
     private static int posCorrecta { get; set; }
 
     public static void InicializarJuego()
@@ -29,9 +30,19 @@ public static class Juego
 
     public static void CargarPartida(string nuevoUsername, int dificultad, int categoria)
     {
+        categoriaEsTodo = categoria == -1;
         username = nuevoUsername; // Preguntar para que el username
         preguntas = BD.ObtenerPreguntas(dificultad, categoria);
         respuestas = BD.ObtenerRespuestas(preguntas);
+    }
+
+    public static bool ComprobarHayPreguntas()
+    {
+        return preguntas != null && preguntas.Count() > 0;
+    }
+    public static bool ComprobarCategoriaEsTodo()
+    {
+        return categoriaEsTodo;
     }
 
     public static Pregunta? ObtenerProximaPregunta()
@@ -40,7 +51,7 @@ public static class Juego
         Random rnd;
         Pregunta? proximaPregunta = null;
 
-        if (preguntas.Count > 0)
+        if (ComprobarHayPreguntas())
         {
             rnd = new Random();
             valorRandom = rnd.Next(0, preguntas.Count);

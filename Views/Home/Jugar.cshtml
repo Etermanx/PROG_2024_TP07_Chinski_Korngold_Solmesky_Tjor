@@ -1,7 +1,25 @@
 @{
     ViewBag.Titulo = "Jugar";
 }
-<div class="container">
+@if (ViewBag.Categorias != null)
+{
+    <div id="ruleta" class="position-absolute top-50 start-50 translate-middle">
+        <div></div>
+        <button id="ruletaBoton" onclick="girarA(@ViewBag.ProximaPregunta.IdCategoria);"></button>
+        <canvas
+            id="ruletaCanvas"
+            width="600" height="600"
+            data-responsiveMinWidth="768px"
+            data-responsiveScaleHeight="true">
+                Canvas not supported, use another browser.
+        </canvas>
+    </div>
+    <div id="categoriaElegida" class="position-absolute top-0 start-0">
+        <img src="~/img/CategoriaElegida.bmp" alt="Carlos mirando la categoria elegida">
+        <img class="position-absolute top-50 start-50 translate-middle" src="" alt="">
+    </div>
+}
+<div id="pregunta" class="container position-absolute top-50 start-50 translate-middle">
   <div class="card">
         @if (ViewBag.ProximaPregunta.Foto != null)
         {
@@ -43,3 +61,17 @@
         </div>
     </form>
 </div>
+@if (ViewBag.Categorias != null)
+{
+    <script src="~/lib/winwheel/Winwheel.min.js"></script>
+    <script src="~/lib/TweenMax.min.js"></script>
+    <script>
+        const segments = [
+            @foreach (Categoria categoria in ViewBag.Categorias)
+            {
+                <text>{"image": "/img/ruleta/</text><text>@categoria.IdCategoria</text><text>.png", "text": "@categoria.Nombre"},</text>
+            }
+        ];
+    </script>
+    <script src="~/js/Juego.js"></script>
+}

@@ -38,7 +38,7 @@ public class HomeController : Controller
         if (username != String.Empty && (dificultad > 0 || dificultad == -1) && (categoria > 0 || categoria == -1))
         {
             Juego.CargarPartida(username, dificultad, categoria);
-            if (Juego.preguntas.Count > 0)
+            if (Juego.ComprobarHayPreguntas())
                 return RedirectToAction("Jugar");
             else
                 ViewBag.Error = "Erm... La base de datos no tiene preguntas para esta dificultad/categoria...";
@@ -57,6 +57,10 @@ public class HomeController : Controller
 
         if (ViewBag.ProximaPregunta != null)
         {
+            if (Juego.ComprobarCategoriaEsTodo())
+            {
+                ViewBag.Categorias = BD.ObtenerCategorias();
+            }
             ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
             return View("Jugar");
         }
