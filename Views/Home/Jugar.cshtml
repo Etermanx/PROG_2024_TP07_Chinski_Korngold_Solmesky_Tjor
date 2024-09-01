@@ -5,7 +5,7 @@
 {
     <div id="ruleta">
         <div></div>
-        <button id="ruletaBoton" onclick="girarA(@ViewBag.ProximaPregunta.IdCategoria);"></button>
+        <button id="ruletaBoton" onclick="girarA(@ViewBag.PosProximaCategoria + 1);"></button>
         <canvas
             id="ruletaCanvas"
             width="600" height="600"

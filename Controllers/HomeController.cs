@@ -60,7 +60,8 @@ public class HomeController : Controller
             if (Juego.ComprobarCategoriaEsTodo())
             {
                 ViewBag.Categorias = BD.ObtenerCategorias();
-                ViewBag.ProximaCategoria = ViewBag.Categorias[Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, ViewBag.Categorias)];
+                ViewBag.PosProximaCategoria = Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, ViewBag.Categorias);
+                ViewBag.ProximaCategoria = ViewBag.Categorias[ViewBag.PosProximaCategoria];
             }
             ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
             return View("Jugar");
