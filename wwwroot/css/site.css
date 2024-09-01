@@ -8,10 +8,6 @@ body {
 }
 
 
-header {
-  position: sticky;
-  top: 0;
-}
 .navbar-brand img { height: 40px; }
 .btn {
   color: white;
@@ -23,23 +19,27 @@ header {
   transition: 0.2s;
   text-decoration: none;
 }
-.btn:hover{ 
+.btn:hover { 
   color: black;
   background: orange;
   transform: translate(-0.25rem, -0.25rem);
   box-shadow: 0.25rem 0.25rem black;
 }
-.btn:active{ 
+.btn:active { 
   transform: translate(0);
   box-shadow: none;
 }
-a{
+a {
   text-decoration: none;
   color: white;
 }
 
 
 main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 95.5vh;
   padding: 20px;
 }
@@ -48,7 +48,6 @@ main .logo {
 }
 .container {
   max-width: 50vw;
-  text-align: center;
 }
 body:has(> main > .index) {
   background-image: url("../img/nubes.jpeg");
@@ -61,8 +60,14 @@ body:has(> main > .index) {
 }
 
 
+main > .container {
+  background: white;
+  border-radius: 10px;
+  padding: 1%;
+}
+
+
 #ruleta {
-  display: none;
   position: relative;
   text-align: center;
 }
@@ -95,13 +100,37 @@ body:has(> main > .index) {
   border-radius: 100%;
   cursor: pointer;
 }
+
 #categoriaElegida {
-  background: rgba(51, 51, 51, 0.5);
+  display: none;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(51, 51, 51, 0.8);
+  color: white;
+  text-align: center;
   width: 100%;
   height: 100%;
 }
-#categoriaElegida img:first-child {
+#categoriaElegida h2 {
+  font-size: 50px;
+  font-weight: 600;
+}
+#categoriaElegida div {
+  position: relative;
+  width: fit-content;
+  order: -1;
+}
+#categoriaElegida div img:first-child {
+  width: 30vw;
   box-shadow: 0px 0px 50px white;
+}
+#categoriaElegida div img:last-child {
+  position: absolute;
+  bottom: 10%;
+  left: 9%;
+  width: 5.5vw;
 }
 
 
@@ -167,9 +196,19 @@ label[for="dificultad-todas"], label[for="categoria-todas"] {
   .container {
     max-width: 80vw;
   }
-  #wheel button {
+  #ruleta button {
     width: 20vw;
     height: 20vw;
+  }
+  #categoriaElegida div img:first-child {
+    width: 50vw;
+    box-shadow: 0px 0px 50px white;
+  }
+  #categoriaElegida div img:last-child {
+    position: absolute;
+    bottom: 10%;
+    left: 9%;
+    width: 10vw;
   }
 }
 @media screen and (max-width: 576px) {

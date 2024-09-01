@@ -93,12 +93,18 @@ public static class Juego
     public static string? ObtenerRespuestaCorrecta(int idPregunta)
     {
         string? respuestaCorrecta = null;
-
         respuestaCorrecta = BD.RespuestaCorrecta(idPregunta);
-        
         return respuestaCorrecta;
     }
 
+
+    public static int BuscarCategoriaLista(int idCategoria, List<Categoria> lista)
+    {
+        int posCategoria = lista.Count - 1;
+        while (posCategoria >= 0 && idCategoria != lista[posCategoria].IdCategoria)
+            posCategoria--;
+        return posCategoria;
+    }
     private static int BuscarPregunta(int idPregunta)
     {
         int posPregunta = preguntas.Count - 1;

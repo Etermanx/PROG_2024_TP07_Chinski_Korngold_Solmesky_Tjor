@@ -3,7 +3,7 @@
 }
 @if (ViewBag.Categorias != null)
 {
-    <div id="ruleta" class="position-absolute top-50 start-50 translate-middle">
+    <div id="ruleta">
         <div></div>
         <button id="ruletaBoton" onclick="girarA(@ViewBag.ProximaPregunta.IdCategoria);"></button>
         <canvas
@@ -15,11 +15,21 @@
         </canvas>
     </div>
     <div id="categoriaElegida" class="position-absolute top-0 start-0">
-        <img src="~/img/CategoriaElegida.bmp" alt="Carlos mirando la categoria elegida">
-        <img class="position-absolute top-50 start-50 translate-middle" src="" alt="">
+        <h2>@ViewBag.ProximaCategoria.Nombre</h2>
+        <div>
+            <img src="~/img/CategoriaElegida.bmp" alt="Foto de Carlos mirando la categoria elegida">
+            @if (ViewBag.ProximaCategoria.Foto != null)
+            {
+                <img src="@ViewBag.ProximaCategoria.Foto" alt="Icono de @ViewBag.ProximaCategoria.Nombre">
+            }
+            else
+            {
+                <img src="~/img/placeholder.bmp" alt="Placeholder">
+            }
+        </div>
     </div>
 }
-<div id="pregunta" class="container position-absolute top-50 start-50 translate-middle">
+<div id="pregunta" class="container">
   <div class="card">
         @if (ViewBag.ProximaPregunta.Foto != null)
         {

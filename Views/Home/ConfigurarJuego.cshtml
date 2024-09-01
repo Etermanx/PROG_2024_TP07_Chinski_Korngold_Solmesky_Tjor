@@ -1,7 +1,7 @@
 @{
     ViewBag.Titulo = "Configurar juego";
 }
-<div class="container fueraJuego position-absolute top-50 start-50 translate-middle">
+<div class="container fueraJuego">
     <h1>Configurar</h1>
     <form class="needs-validation" method="GET" action="@Url.Action("Comenzar")" novalidate>
         @if (ViewBag.Error != null)

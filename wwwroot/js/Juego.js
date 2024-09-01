@@ -1,4 +1,7 @@
-let theWheel = new Winwheel({
+const elementoRuleta = document.getElementById("ruleta");
+const elementoPregunta = document.getElementById("pregunta");
+const elementoCategoriaElegida = document.getElementById("categoriaElegida");
+let canvasRuleta = new Winwheel({
     "canvasId": "ruletaCanvas",
     "drawMode": "segmentImage",
     "numSegments": segments.length,
@@ -13,27 +16,26 @@ let theWheel = new Winwheel({
     }
 });
 
-function startSpin() {
-    theWheel.stopAnimation(false);
-    theWheel.rotationAngle = theWheel.rotationAngle % 360;
-    theWheel.startAnimation();
-}
-
-function calculatePrize(segmentNumber) {
-    let stopAt = theWheel.getRandomForSegment(segmentNumber);
-    theWheel.animation.stopAngle = stopAt;
-    theWheel.startAnimation();
-}
-
-function girarA(idCategoria) {
-    calculatePrize(idCategoria);
+function girarA(numeroSegmento) {
+    let pararEn = canvasRuleta.getRandomForSegment(numeroSegmento);
+    canvasRuleta.animation.stopAngle = pararEn;
+    canvasRuleta.startAnimation();
 }
 
 function desmontarFachada() {
-    alert("You have won ");
-    document.getElementById("ruleta").style = "display:none;";
-    document.getElementById("pregunta").style = "display:block;";
+    elementoRuleta.style = "display: none;";
+    abrirSplashCategoria();
+    setTimeout(() => {
+        elementoPregunta.style = "display: block;";
+        elementoCategoriaElegida.style = "display: none;";
+    }, 1500);
 }
 
-document.getElementById("ruleta").style = "display:block;";
-document.getElementById("pregunta").style = "display:none;";
+function abrirSplashCategoria() {
+    var audio = new Audio("/audio/Tadaa.mp3");
+    elementoCategoriaElegida.style = "display: flex;";
+    audio.play();
+}
+
+elementoRuleta.style = "display: block;";
+elementoPregunta.style = "display: none;";
