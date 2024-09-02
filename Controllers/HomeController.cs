@@ -99,5 +99,9 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult SegundosFaltantes()
+    {
+        return Content(Juego.GetSegundosFaltantes().ToString(), "text/plain");
+    }
     
 }
