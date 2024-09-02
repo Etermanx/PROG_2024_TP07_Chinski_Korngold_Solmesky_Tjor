@@ -51,8 +51,10 @@ main .logo {
 }
 main > .container {
   background: white;
-  border-radius: 10px;
   padding: 1%;
+}
+main > .container, .card, input, .btn, input[type="radio"]+label, .respuesta {
+  border-radius: 10px;
 }
 
 
@@ -159,9 +161,6 @@ label img {
 input[type="text"], input[type="submit"] {
   font-size: 18px;
 }
-input, .btn {
-  border-radius: 10px;
-}
 input[type="radio"]+label {
   background-color: #bbb;
   width: 70%;
@@ -169,7 +168,6 @@ input[type="radio"]+label {
   margin-left: auto;
   margin-right: auto;
   padding: 3%;
-  border-radius: 10px;
   cursor: pointer;
 }
 input[type="radio"]:checked+label {
