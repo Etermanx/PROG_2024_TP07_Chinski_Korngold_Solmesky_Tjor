@@ -9,10 +9,10 @@ public static class Juego
     private static List<Pregunta> preguntas { get; set; }
     private static List<Respuesta> respuestas { get; set; }
     private static bool categoriaEsTodo { get; set; }
-    private static int posCorrecta { get; set; }
-
     private static System.Timers.Timer reloj;
     private static int segundosFaltantes = 0;
+
+
 
 
     public static void InicializarJuego()
@@ -50,6 +50,11 @@ public static class Juego
     public static bool ComprobarCategoriaEsTodo()
     {
         return categoriaEsTodo;
+    }
+
+    public static string ObtenerUsername(){
+
+        return username;
     }
 
     public static Pregunta? ObtenerProximaPregunta()

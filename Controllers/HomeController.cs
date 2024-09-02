@@ -46,6 +46,7 @@ public class HomeController : Controller
         else
             ViewBag.Error = "¡Debés completar todos los campos!";
 
+        
         ViewBag.Categorias = BD.ObtenerCategorias();
         ViewBag.Dificultades = BD.ObtenerDificultades();
         return View("ConfigurarJuego");
@@ -101,6 +102,11 @@ public class HomeController : Controller
     public IActionResult SegundosFaltantes()
     {
         return Content(Juego.GetSegundosFaltantes().ToString(), "text/plain");
+    }
+    public IActionResult Fin(){
+
+
+        return View();
     }
     
 }
