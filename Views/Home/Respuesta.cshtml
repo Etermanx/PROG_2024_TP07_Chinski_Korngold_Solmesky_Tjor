@@ -17,7 +17,21 @@
             <h5 class="card-title">@ViewBag.ProximaPregunta.Enunciado</h5>
         </div>
     </div>
-    <h1>@ViewBag.Mensaje</h1>
-    <p>@ViewBag.Correcta</p>
+    @if (ViewBag.Respuesta)
+    {
+        <div class="respuesta mt-2 mb-2 p-5 text-light bg-success text-center">
+            <h1>@ViewBag.Mensaje</h1>
+            <img class="img-fluid" src="~/img/Respuesta/Incorrecta.png" alt="Foto de Carlos cuando su respuesta es incorrecta">
+        </div>
+    }
+    else {
+        <div class="respuesta mt-2 mb-2 p-5 text-light bg-danger text-center">
+            <h1>@ViewBag.Mensaje</h1>
+            <p>Era "@ViewBag.Correcta"</p>
+            <img class="img-fluid" src="~/img/Respuesta/Incorrecta.png" alt="Foto de Carlos cuando su respuesta es incorrecta">
+        </div>
+    }
+    <p>@ViewBag.PuntajeActual ₧</p>
+    <p><a class="btn" href="@Url.Action("Jugar")">Siguiente pregunta</a></p>
 </div>
 

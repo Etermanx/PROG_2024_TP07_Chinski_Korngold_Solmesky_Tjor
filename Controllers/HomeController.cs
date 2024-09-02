@@ -78,6 +78,7 @@ public class HomeController : Controller
             ViewBag.ProximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
             ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
             ViewBag.Correcta = Juego.ObtenerRespuestaCorrecta(idPregunta);
+            ViewBag.PuntajeActual = Juego.ObtenerPuntajeActual();
             return View("Respuesta");
         }
         else

@@ -96,6 +96,10 @@ public static class Juego
         respuestaCorrecta = BD.RespuestaCorrecta(idPregunta);
         return respuestaCorrecta;
     }
+    public static int ObtenerPuntajeActual()
+    {
+        return puntajeActual;
+    }
 
 
     public static int BuscarCategoriaLista(int idCategoria, List<Categoria> lista)
