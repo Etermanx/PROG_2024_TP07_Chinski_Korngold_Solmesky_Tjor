@@ -58,6 +58,7 @@ public class HomeController : Controller
 
         if (ViewBag.ProximaPregunta != null)
         {
+            Reloj.ComenzarContador();
             if (Juego.ComprobarCategoriaEsTodo())
             {
                 ViewBag.Categorias = BD.ObtenerCategorias();
@@ -76,6 +77,7 @@ public class HomeController : Controller
     {
         if (idPregunta > 0 && idRespuesta > 0)
         {
+            Reloj.FinalizarContador();
             ViewBag.ProximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
             ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
             ViewBag.Correcta = Juego.ObtenerRespuestaCorrecta(idPregunta);
@@ -100,9 +102,10 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult SegundosFaltantes()
+    public IActionResult ComenzarContador()
     {
-        return Content(Juego.GetSegundosFaltantes().ToString(), "text/plain");
+        Reloj.ComenzarContador();
+        return Content(Reloj.GetSegundosFaltantes().ToString(), "text/plain");
     }
     public IActionResult Fin(){
 

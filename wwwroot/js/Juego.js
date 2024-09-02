@@ -28,7 +28,8 @@ function desmontarFachada() {
     setTimeout(() => {
         elementoPregunta.style = "display: block;";
         elementoCategoriaElegida.style = "display: none;";
-    }, 1500);
+        comenzarContador();
+    }, 3000);
 }
 
 function abrirSplashCategoria() {

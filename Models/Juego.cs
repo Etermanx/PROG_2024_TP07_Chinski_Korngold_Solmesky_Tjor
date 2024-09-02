@@ -1,16 +1,13 @@
-using System.Timers;
 public static class Juego
 {
     const int SUMA_PUNTAJE = 500;
-    const int SEGUNDOS_MAX = 2000;
     public static string username { get; private set; }
     public static int puntajeActual { get; private set; }
     public static int cantidadPreguntasCorrectas { get; private set; }
     private static List<Pregunta> preguntas { get; set; }
     private static List<Respuesta> respuestas { get; set; }
     private static bool categoriaEsTodo { get; set; }
-    private static System.Timers.Timer reloj;
-    private static int segundosFaltantes = 0;
+    private static bool perdido { get; set; }
 
 
 
@@ -22,7 +19,6 @@ public static class Juego
         cantidadPreguntasCorrectas = 0;
         preguntas = new List<Pregunta>();
         respuestas = new List<Respuesta>();
-        ComenzarContador(out reloj, SEGUNDOS_MAX);
     }
 
     public static List<Categoria> ObtenerCategorias()
@@ -50,6 +46,14 @@ public static class Juego
     public static bool ComprobarCategoriaEsTodo()
     {
         return categoriaEsTodo;
+    }
+    public static void CambiarEstadoPerdido()
+    {
+        perdido = !perdido;
+    }
+    public static bool ComprobarPerdido()
+    {
+        return perdido;
     }
 
     public static string ObtenerUsername(){
@@ -133,32 +137,5 @@ public static class Juego
 
         bool correcto = BD.EsCorrecta(idRespuesta);
         return correcto;
-
-        
-    }
-    public static int GetSegundosFaltantes()
-    {
-        return segundosFaltantes;
-    }
-
-     private static void ComenzarContador(out System.Timers.Timer reloj, int segundosMax)
-    {
-        reloj = new System.Timers.Timer(1000); // 1 segundo
-        segundosFaltantes = segundosMax;
-
-        reloj.Elapsed += Tick;
-        reloj.AutoReset = true;
-        reloj.Enabled = true;   
-    }
-    private static void FinalizarContador(System.Timers.Timer reloj)
-    {
-        reloj.Stop();
-        reloj.Dispose();
-    }
-    private static void Tick(Object source, ElapsedEventArgs e)
-    {
-        segundosFaltantes--;
-        if (segundosFaltantes < 0)
-            FinalizarContador(reloj);
     }
 }
