@@ -46,7 +46,7 @@ public class HomeController : Controller
         else
             ViewBag.Error = "¡Debés completar todos los campos!";
 
-        
+
         ViewBag.Categorias = BD.ObtenerCategorias();
         ViewBag.Dificultades = BD.ObtenerDificultades();
         return View("ConfigurarJuego");
@@ -54,38 +54,54 @@ public class HomeController : Controller
 
     public IActionResult Jugar()
     {
-        ViewBag.ProximaPregunta = Juego.ObtenerProximaPregunta();
-
-        if (ViewBag.ProximaPregunta != null)
+        if (Juego.ComprobarHayPartida())
         {
-            Reloj.ComenzarContador();
-            if (Juego.ComprobarCategoriaEsTodo())
+            ViewBag.ProximaPregunta = Juego.ObtenerProximaPregunta();
+
+            if (ViewBag.ProximaPregunta != null || !Juego.ComprobarPerdido())
             {
-                ViewBag.Categorias = BD.ObtenerCategorias();
-                ViewBag.PosProximaCategoria = Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, ViewBag.Categorias);
-                ViewBag.ProximaCategoria = ViewBag.Categorias[ViewBag.PosProximaCategoria];
+                Reloj.ComenzarContador();
+                if (Juego.ComprobarCategoriaEsTodo())
+                {
+                    ViewBag.Categorias = BD.ObtenerCategorias();
+                    ViewBag.PosProximaCategoria = Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, ViewBag.Categorias);
+                    ViewBag.ProximaCategoria = ViewBag.Categorias[ViewBag.PosProximaCategoria];
+                }
+                ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
+                return View("Jugar");
             }
-            ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
-            return View("Jugar");
+            else
+                return View("Fin");
         }
         else
-            return View("Fin");
+            return RedirectToAction("ConfigurarJuego");
     }
 
     [HttpPost]
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-        if (idPregunta > 0 && idRespuesta > 0)
+        bool perdido;
+
+        if (Juego.ComprobarHayPartida())
         {
             Reloj.FinalizarContador();
-            ViewBag.ProximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
-            ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
-            ViewBag.Correcta = Juego.ObtenerRespuestaCorrecta(idPregunta);
-            ViewBag.PuntajeActual = Juego.ObtenerPuntajeActual();
-            return View("Respuesta");
+            perdido = Juego.ComprobarPerdido();
+
+            if (idPregunta > 0 && idRespuesta > 0 && !perdido)
+            {
+                ViewBag.ProximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
+                ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
+                ViewBag.Correcta = Juego.ObtenerRespuestaCorrecta(idPregunta);
+                ViewBag.PuntajeActual = Juego.ObtenerPuntajeActual();
+                return View("Respuesta");
+            }
+            else if (perdido)
+                return RedirectToAction("Fin");
+            else
+                return RedirectToAction("Jugar");
         }
         else
-            return RedirectToAction("Jugar");
+            return RedirectToAction("ConfigurarJuego");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -94,11 +110,11 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-        public IActionResult Respuesta()
+    public IActionResult Respuesta()
     {
         return View();
     }
-      public IActionResult Creditos()
+    public IActionResult Creditos()
     {
         return View();
     }
@@ -107,10 +123,11 @@ public class HomeController : Controller
         Reloj.ComenzarContador();
         return Content(Reloj.GetSegundosFaltantes().ToString(), "text/plain");
     }
-    public IActionResult Fin(){
+    public IActionResult Fin()
+    {
 
 
         return View();
     }
-    
+
 }

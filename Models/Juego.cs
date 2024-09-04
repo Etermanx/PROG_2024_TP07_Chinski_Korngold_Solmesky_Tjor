@@ -37,8 +37,13 @@ public static class Juego
         username = nuevoUsername; // Preguntar para que el username
         preguntas = BD.ObtenerPreguntas(dificultad, categoria);
         respuestas = BD.ObtenerRespuestas(preguntas);
+        perdido = false;
     }
 
+    public static bool ComprobarHayPartida()
+    {
+        return username != null;
+    }
     public static bool ComprobarHayPreguntas()
     {
         return preguntas != null && preguntas.Count() > 0;
