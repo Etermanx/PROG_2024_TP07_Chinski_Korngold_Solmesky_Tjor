@@ -125,6 +125,10 @@ public class HomeController : Controller
     }
     public IActionResult Fin()
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 00b2ab16ef652682adc8703713ff67cef779dc1b
         return View();
     }
 

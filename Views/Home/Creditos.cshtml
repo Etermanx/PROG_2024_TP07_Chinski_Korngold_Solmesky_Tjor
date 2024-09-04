@@ -1,15 +1,24 @@
-@{
-    ViewBag.Titulo = "Créditos";
-}
+<head>
+    <link rel="stylesheet" href="~/css/creditos.css"/>
+</head>
+<body class = "body-credits">
+    <div class="credits">
+        <div class="panel active" style="background-image: url('../img/Santisolmeok.jpeg');">
+            <h3>Santiago Eitan Solmesky</h3>
+        </div>
 
+        <div class="panel" style="background-image: url('../img/Santisolmeok.jpeg');">
+            <h3>Tomás Korngold</h3>
+        </div>
 
-<div class="container">
-    <a class="btn" href="javascript:history.back();">&larr; Volver</a>
-    <h1>Créditos</h1>
-    <img class="img-creds" src="~/img/Creditos.jpeg" alt="Foto de los tres">
-    <ul class="expandido">
-        <li><a href="https://github.com/tomaskorn22">Tomás "Korgol" Korngold</a></li>
-        <li><a href="https://github.com/DavidChinski">David Chinski</a></li>
-        <li><a href="https://github.com/tjor75">Lucas Tjor</a></li>
-    </ul>
-</div>
+        <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80');">
+            <h3>David Chinski</h3>
+        </div>
+
+        <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1551009175-8a68da93d5f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80');">
+            <h3>Lucas Tjor</h3>
+        </div>
+    </div>
+
+    <script src="creditos.js"></script>
+</body>
