@@ -5,7 +5,7 @@ public static class Reloj
     private static System.Timers.Timer reloj;
     private static int segundosFaltantes = 0;
 
-    public static int GetSegundosFaltantes()
+    public static int ObtenerSegundosFaltantes()
     {
         return segundosFaltantes;
     }
@@ -16,7 +16,6 @@ public static class Reloj
         segundosFaltantes = SEGUNDOS_MAX;
 
         reloj.Elapsed += Tick;
-        reloj.AutoReset = true;
         reloj.Enabled = true;   
     }
     public static void FinalizarContador()
@@ -27,10 +26,8 @@ public static class Reloj
     private static void Tick(Object source, ElapsedEventArgs e)
     {
         segundosFaltantes--;
+        Console.WriteLine(segundosFaltantes);
         if (segundosFaltantes < 0)
-        {
-            Juego.CambiarEstadoPerdido();
             FinalizarContador();
-        } 
     }
 }

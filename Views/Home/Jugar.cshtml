@@ -2,7 +2,7 @@
     ViewBag.Titulo = "Jugar";
 }
 
-<partial name="~/Views/Partials/_ArribaJuego.cshtml" />
+<a class="btn reiniciarPartida" href="@Url.Action("ConfigurarJuego")">&larr; Reiniciar Partida</a>
 
 @if (ViewBag.Categorias != null)
 {
@@ -71,9 +71,13 @@
         </div>
         <div>
             <input class="btn btn-primary" type="submit" value="Comprobar">
+            <p id="contador"><noscript>El contador necesita Javascript, así que tomate el tiempo que necesites...</noscript></p>
         </div>
     </form>
 </div>
+
+<script src="~/js/Contador.js" asp-append-version="true"></script>
+
 @if (ViewBag.Categorias != null)
 {
     <script src="~/lib/winwheel/Winwheel.min.js"></script>
@@ -82,9 +86,13 @@
         const segments = [
             @foreach (Categoria categoria in ViewBag.Categorias)
             {
-                <text>{"image": "/img/Ruleta/</text><text>@categoria.IdCategoria</text><text>.png", "text": "@categoria.Nombre"},</text>
+                <text>{ "image": "/img/Ruleta/</text><text>@categoria.IdCategoria</text><text>.png", "text": "@categoria.Nombre" },</text>
             }
         ];
     </script>
-    <script src="~/js/Juego.js"></script>
+    <script src="~/js/Juego.js" asp-append-version="true"></script>
+}
+else
+{
+    <script>comenzarContador();</script>
 }

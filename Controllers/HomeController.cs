@@ -58,9 +58,8 @@ public class HomeController : Controller
         {
             ViewBag.ProximaPregunta = Juego.ObtenerProximaPregunta();
 
-            if (ViewBag.ProximaPregunta != null || !Juego.ComprobarPerdido())
+            if (ViewBag.ProximaPregunta != null || Juego.ComprobarPerdido())
             {
-                Reloj.ComenzarContador();
                 if (Juego.ComprobarCategoriaEsTodo())
                 {
                     ViewBag.Categorias = BD.ObtenerCategorias();
@@ -84,7 +83,6 @@ public class HomeController : Controller
 
         if (Juego.ComprobarHayPartida())
         {
-            Reloj.FinalizarContador();
             perdido = Juego.ComprobarPerdido();
 
             if (idPregunta > 0 && idRespuesta > 0 && !perdido)
@@ -96,7 +94,9 @@ public class HomeController : Controller
                 return View("Respuesta");
             }
             else if (perdido)
+            {
                 return RedirectToAction("Fin");
+            }
             else
                 return RedirectToAction("Jugar");
         }
@@ -118,15 +118,13 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult ComenzarContador()
+    public IActionResult CambiarEstadoPerdido()
     {
-        Reloj.ComenzarContador();
-        return Content(Reloj.GetSegundosFaltantes().ToString(), "text/plain");
+        Juego.CambiarEstadoPerdido();
+        return Content("", "text/plain");
     }
     public IActionResult Fin()
     {
-
-
         return View();
     }
 

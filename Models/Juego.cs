@@ -10,8 +10,6 @@ public static class Juego
     private static bool perdido { get; set; }
 
 
-
-
     public static void InicializarJuego()
     {
         username = string.Empty;
@@ -139,7 +137,6 @@ public static class Juego
     }
     private static bool BuscarRespuestaCorrecta(int idRespuesta)
     {
-
         bool correcto = BD.EsCorrecta(idRespuesta);
         return correcto;
     }

@@ -1,16 +1,16 @@
-const SEGUNDOS_FALTANTES_URL = "/Home/ComenzarContador";
-const Juego_URL = "/Home/Jugar";
+const SEGUNDOS_MAX = 15;
+const CAMBIAR_ESTADO_PERDIDO_URL = "/Home/CambiarEstadoPerdido";
+const FIN_URL = "/Home/Fin";
 const contador = document.getElementById("contador");
 let intervalo;
 var segundosFaltantes;
 
 function comenzarContador()
 {
-    fetch(SEGUNDOS_FALTANTES_URL)
-        .then((res) => res.text())
-        .then((text) => segundosFaltantes = Number(text));
+    segundosFaltantes = SEGUNDOS_MAX;
 
     intervalo = setInterval(() => {
+        actualizarContador();
         segundosFaltantes--;
         
         if (segundosFaltantes < 0) {
@@ -18,10 +18,11 @@ function comenzarContador()
             segundosFaltantes = 0;
         } else if (segundosFaltantes == 0) {
             clearInterval(intervalo);
-            location.href = Juego_URL;
+            fetch(CAMBIAR_ESTADO_PERDIDO_URL)
+                .then(() => {
+                    location.href = FIN_URL;
+                });
         }
-    
-        actualizarContador();
     }, 1000);
 }
 
