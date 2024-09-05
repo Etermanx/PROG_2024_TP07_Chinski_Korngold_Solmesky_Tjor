@@ -125,7 +125,6 @@ public class HomeController : Controller
     }
     public IActionResult Fin()
     {
-
         return View();
     }
 

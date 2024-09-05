@@ -1,24 +1,103 @@
 <head>
-    <link rel="stylesheet" href="~/css/creditos.css"/>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Muli', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .credits {
+            display: flex;
+            width: 90vw;
+        }
+
+        .panel {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 80vh;
+            border-radius: 50px;
+            flex: 1;
+            position: relative;
+            transition: flex 0.5s ease-in;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .panel h3 {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            opacity: 0;
+        }
+
+        .panel.active {
+            flex: 5;
+        }
+
+        .panel.active h3 {
+            opacity: 1;
+            transition: opacity 0.4s ease-in 0.4s;
+        }
+
+        .panel h3 a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+
+        .panel h3 a:hover {
+            color: #a0d6ff;
+        }
+    </style>
 </head>
-<body class = "body-credits">
+
+<body>
     <div class="credits">
-        <div class="panel active" style="background-image: url('../img/Santisolmeok.jpeg');">
-            <h3>Santiago Eitan Solmesky</h3>
-        </div>
-
         <div class="panel" style="background-image: url('../img/Santisolmeok.jpeg');">
-            <h3>Tomás Korngold</h3>
+            <h3><a href="https://github.com/santiago-eitan" target="_blank">Santiago Eitan Solmesky</a></h3>
         </div>
 
-        <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80');">
-            <h3>David Chinski</h3>
+        <div class="panel" style="background-image: url('../img/tjor.jpg');">
+            <h3><a href="https://github.com/lucas-tjor" target="_blank">Lucas Tjor</a></h3>
         </div>
 
-        <div class="panel" style="background-image: url('https://images.unsplash.com/photo-1551009175-8a68da93d5f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80');">
-            <h3>Lucas Tjor</h3>
+        <div class="panel" style="background-image: url('../img/davo.jpg');">
+            <h3><a href="https://github.com/david-chinski" target="_blank">David Chinski</a></h3>
+        </div>
+
+        <div class="panel" style="background-image: url('../img/korngold.jpg');">
+            <h3><a href="https://github.com/tomas-korngold" target="_blank">Tomás Korngold</a></h3>
         </div>
     </div>
 
-    <script src="creditos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const panels = document.querySelectorAll('.panel');
+
+            panels.forEach(panel => {
+                panel.addEventListener('click', () => {
+                    removeActiveClasses();
+                    panel.classList.add('active');
+                });
+            });
+
+            function removeActiveClasses() {
+                panels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+            }
+        });
+    </script>
 </body>
