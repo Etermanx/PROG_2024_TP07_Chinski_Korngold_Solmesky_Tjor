@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?Muli&display=swap');
 @import url("./fonts.css");
+
 
 body {
   background:  #a7d6ff;
@@ -7,26 +9,23 @@ body {
   height: 100vh;
 }
 
-.navbar-brand img { height: 40px; }
 
 .btn, input[type="radio"]+label {
   color: white;
   cursor: pointer;
   border: 1px solid black;
   border-radius: 4px;
-  padding: 1% 2%;
+  padding: 10px 20px;
   background: black;
   transition: 0.2s;
   text-decoration: none;
 }
-
 .btn:hover, input[type="radio"]:checked+label { 
   color: black;
   background: lightblue;
   transform: translate(-0.25rem, -0.25rem);
   box-shadow: 0.25rem 0.25rem black;
 }
-
 .btn:active { 
   transform: translate(0);
   box-shadow: none;
@@ -43,6 +42,7 @@ a, a:hover {
   color: inherit;
 }
 
+
 main {
   display: flex;
   flex-direction: column;
@@ -51,54 +51,30 @@ main {
   min-height: 95.5vh;
   padding: 20px;
 }
-
 main .logo {
   width: 80%;
 }
-
 .container {
   max-width: 50vw;
 }
-
 main > .container {
   background: white;
   padding: 1%;
 }
-
 main > .container, .card, input, .btn, input[type="radio"]+label, .respuesta {
   border-radius: 10px;
 }
-
-/* Estilos de las tarjetas expansibles */
-.panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: flex 0.5s ease-in-out;
-  flex: 1;
-}
-
-.panel.active {
-  flex: 5;
-  background-color: #f0f0f0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
 body:has(> main > .index) {
   background: black;
 }
-
 main > .index {
   background: transparent;
   color: white;
 }
-
 .index .btn {
   font-size: 20px;
   padding: 0.8em 2em;
 }
-
 main > video {
   position: fixed;
   min-width: 100%; 
@@ -111,7 +87,6 @@ main > video {
   position: relative;
   text-align: center;
 }
-
 #ruleta div {
   position: absolute;
   top: -10px;
@@ -124,7 +99,6 @@ main > video {
   margin-right: auto;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
-
 #ruleta button {
   position: absolute;
   top: 0;
@@ -179,12 +153,11 @@ main > video {
   width: 5.5vw;
 }
 
+
 input[type="radio"] {
   visibility: hidden;
 }
-
 input[type="radio"]+label {
-  padding: 3%;
   cursor: pointer;
 }
 
@@ -194,16 +167,13 @@ label {
   align-items: center;
   margin: 1% 5%;
 }
-
 label img {
   width: auto;
   height: 50px;
 }
-
 input[type="text"], input[type="submit"] {
   font-size: 18px;
 }
-
 input[type="text"] {
   background: transparent;
   border-top: none;
@@ -214,20 +184,20 @@ input[type="text"] {
   padding-left: 0%;
   padding-right: 0%;
 }
-
 input[type="text"]:focus {
   background: transparent;
   outline: none;
 }
-
 input[type="text"]:hover {
   border-bottom: solid 1px #686868;
 }
-
 label[for="dificultad-todas"], label[for="categoria-todas"] {
   font-weight: 700;
 }
 
+.form-check {
+  padding-left: calc(var(--bs-gutter-x) * .5);
+}
 .form-check-input.is-valid ~ .form-check-label, .was-validated .form-check-input:valid ~ .form-check-label {
   color: inherit;
 }
@@ -243,6 +213,29 @@ label[for="dificultad-todas"], label[for="categoria-todas"] {
 .expandido li {
   list-style: none;
 }
+
+
+/* Estilos de las tarjetas expansibles */
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: flex 0.5s ease-in-out;
+  flex: 1;
+}
+
+.panel.active {
+  flex: 5;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.footer {
+  padding: 20px 5px; 
+}
+
 
 @media screen and (max-width: 768px) {
   main .logo { width: 100%; }
@@ -272,10 +265,7 @@ label[for="dificultad-todas"], label[for="categoria-todas"] {
   .container {
     max-width: 100vw;
   }
+  .btn, input[type="radio"] + label {
+    padding: 5px 10px;
+  }
 }
-
-.footer {
-  padding: 20px 5px; 
-}
-
-@import url('https://fonts.googleapis.com/css2?Muli&display=swap');
