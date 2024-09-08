@@ -38,9 +38,9 @@ body {
   left: 15px;
 }
 
-a {
+a, a:hover {
   text-decoration: none;
-  color: white;
+  color: inherit;
 }
 
 main {
@@ -275,8 +275,7 @@ label[for="dificultad-todas"], label[for="categoria-todas"] {
 }
 
 .footer {
-  padding-bottom: 20px; 
-  margin-bottom: 20px; 
+  padding: 20px 5px; 
 }
 
 @import url('https://fonts.googleapis.com/css2?Muli&display=swap');
