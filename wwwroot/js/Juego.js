@@ -28,7 +28,7 @@ function desmontarFachada() {
     setTimeout(() => {
         elementoPregunta.style = "display: block;";
         elementoCategoriaElegida.style = "display: none;";
-        //comenzarContador();
+        comenzarContador();
     }, 3000);
 }
 

@@ -84,12 +84,14 @@ public class HomeController : Controller
         if (Juego.ComprobarHayPartida())
         {
             perdido = Juego.ComprobarPerdido();
+            ViewBag.ProximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
 
-            if (idPregunta > 0 && idRespuesta > 0 && !perdido)
+            if (idPregunta > 0 && idRespuesta > 0 && !perdido && ViewBag.ProximaPregunta != null)
             {
-                ViewBag.ProximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
-                ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
-                ViewBag.Correcta = Juego.ObtenerRespuestaCorrecta(idPregunta);
+                ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
+                ViewBag.RespuestaReal = Juego.ObtenerRespuestaCorrecta(idPregunta);
+                ViewBag.IdRespuestaDada = idRespuesta;
+                ViewBag.Correcta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
                 ViewBag.PuntajeActual = Juego.ObtenerPuntajeActual();
                 return View("Respuesta");
             }

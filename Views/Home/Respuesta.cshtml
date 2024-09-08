@@ -1,6 +1,6 @@
 @{
     if (ViewBag.Respuesta == true)
-        ViewBag.Mensaje = "Tu respuesta es correcta";
+        ViewBag.Mensaje = "Enhorabuena";
     else
         ViewBag.Mensaje = "Segui participando";
 
@@ -9,32 +9,47 @@
 
 <a class="btn reiniciarPartida" href="@Url.Action("ConfigurarJuego")">&larr; Reiniciar Partida</a>
 
-<div class="container">
-    <div class="card">
+<div id="pregunta" class="container @if (ViewBag.Correcta) { <text>correcta text-light bg-success</text> } else { <text>incorrecta text-light bg-danger</text> }">
+    <div class="card @if (ViewBag.Correcta) { <text>bg-success</text> } else { <text>bg-danger</text> }">
         @if (ViewBag.ProximaPregunta.Foto != null)
         {
             <img src="@ViewBag.ProximaPregunta.Foto" class="card-img-top" alt="Foto de la pregunta">
         }
         <div class="card-body">
-            <h5 class="card-title">@ViewBag.ProximaPregunta.Enunciado</h5>
+            <h1 class="card-title fs-3">@ViewBag.ProximaPregunta.Enunciado</h1>
+            @if (ViewBag.Correcta)
+            {
+                <p class="card-text">@ViewBag.Mensaje</p>
+            }
+            else
+            {
+                <p class="card-text">@ViewBag.Mensaje<text>.</text> Era "@ViewBag.RespuestaReal.Contenido"</p>
+            }
         </div>
     </div>
-    @if (ViewBag.Respuesta)
-    {
-        <div class="respuesta mt-2 mb-2 p-5 text-light bg-success text-center">
-            <h1>@ViewBag.Mensaje</h1>
-            <img class="img-fluid" src="~/img/Respuesta/Correcta.png" alt="Foto de Carlos cuando su respuesta es correcta">
+    <div>
+        <div class="mb-3">
+            @if (ViewBag.ProximasRespuestas.Count > 0)
+            {
+                foreach (Respuesta respuesta in ViewBag.ProximasRespuestas)
+                {
+                    <p class="btn disabled @if (respuesta.Correcta) { <text>bg-success</text> } else if (ViewBag.IdRespuestaDada == respuesta.IdRespuesta) { <text>bg-danger</text> }">
+                        @if (respuesta.Foto != null)
+                        {
+                            <img src="@respuesta.Foto" alt="Foto de @respuesta.Contenido">
+                        }
+                        <span>@respuesta.Contenido</span>
+                    </p>
+                }
+            }
+            else
+            {
+                <p class="text-secondary">¿No hay respuestas?</p>
+            }
         </div>
-    }
-    else
-    {
-        <div class="respuesta mt-2 mb-2 p-5 text-light bg-danger text-center">
-            <h1>@ViewBag.Mensaje</h1>
-            <p>Era "@ViewBag.Correcta"</p>
-            <img class="img-fluid" src="~/img/Respuesta/Incorrecta.png" alt="Foto de Carlos cuando su respuesta es incorrecta">
+        <div class="row align-items-center">
+            <p class="col text-start">Puntaje actual: @ViewBag.PuntajeActual ₧</p>
+            <p class="col text-end"><a class="btn" href="@Url.Action("Jugar")">Siguiente pregunta</a></p>
         </div>
-    }
-    <p>Tu puntaje actual:  @ViewBag.PuntajeActual ₧</p>
-    <p><a class="btn" href="@Url.Action("Jugar")">Siguiente pregunta</a></p>
+    </div>
 </div>
-

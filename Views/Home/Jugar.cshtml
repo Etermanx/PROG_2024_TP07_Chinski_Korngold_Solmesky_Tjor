@@ -39,7 +39,7 @@
             <img src="@ViewBag.ProximaPregunta.Foto" class="card-img-top" alt="Foto de la pregunta">
         }
         <div class="card-body">
-            <h5 class="card-title">@ViewBag.ProximaPregunta.Enunciado</h5>
+            <h1 class="card-title fs-3">@ViewBag.ProximaPregunta.Enunciado</h1>
         </div>
     </div>
     <form class="needs-validation" method="POST" action="@Url.Action("VerificarRespuesta")" novalidate>
@@ -67,9 +67,12 @@
                 <p class="text-secondary">¿No hay respuestas?</p>
             }
         </div>
-        <div>
-            <input class="btn btn-primary" type="submit" value="Comprobar">
-            <p id="contador"><noscript>El contador necesita Javascript, así que tomate el tiempo que necesites...</noscript></p>
+        <div class="row align-items-center">
+            <p id="contador" class="col text-start fs-3">
+                <!-- ¡Shh!... no le cuentes a nadie, no cuestiones. Disfruta del truco, te lo ganaste.  -->
+                <noscript>El contador necesita Javascript, así que tomate el tiempo que necesites...</noscript>
+            </p>
+            <p class="col text-end"><input class="btn btn-primary" type="submit" value="Comprobar"></p>
         </div>
     </form>
 </div>

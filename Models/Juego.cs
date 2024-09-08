@@ -92,9 +92,17 @@ public static class Juego
         
     }
 
-    public static Pregunta ObtenerPreguntaLista(int idPregunta)
+    public static Pregunta? ObtenerPreguntaLista(int idPregunta)
     {
-        return preguntas[BuscarPregunta(idPregunta)];
+        int posPregunta = BuscarPregunta(idPregunta);
+        Pregunta? pregunta;
+
+        if (posPregunta != -1)
+            pregunta = preguntas[posPregunta];
+        else
+            pregunta = null;
+
+        return pregunta;
     }
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
@@ -109,9 +117,9 @@ public static class Juego
 
         return correcta;
     }
-    public static string? ObtenerRespuestaCorrecta(int idPregunta)
+    public static Respuesta? ObtenerRespuestaCorrecta(int idPregunta)
     {
-        string? respuestaCorrecta = null;
+        Respuesta? respuestaCorrecta = null;
         respuestaCorrecta = BD.RespuestaCorrecta(idPregunta);
         return respuestaCorrecta;
     }

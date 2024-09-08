@@ -71,14 +71,13 @@ public static class BD
         return Correcta;
     }
 
-    public static string RespuestaCorrecta(int idPregunta){
+    public static Respuesta? RespuestaCorrecta(int idPregunta){
 
-        string respuestaCorrecta = null;
+        Respuesta? respuestaCorrecta;
         using(SqlConnection db = new SqlConnection(CONNECTION_STRING)){
-            string sql= "SELECT Contenido from Preguntas INNER JOIN Respuestas ON Preguntas.IdPregunta = Respuestas.IdPregunta where Preguntas.IdPregunta = @pIdPregunta AND Correcta = 1";
-            respuestaCorrecta = db.QueryFirstOrDefault<string>(sql, new{pIdPregunta=idPregunta});
+            string sql= "SELECT TOP(1) * FROM Respuestas WHERE IdPregunta = @pIdPregunta AND Correcta = 1";
+            respuestaCorrecta = db.QueryFirstOrDefault<Respuesta>(sql, new{ pIdPregunta = idPregunta });
         }
-
         return respuestaCorrecta;
 
     }

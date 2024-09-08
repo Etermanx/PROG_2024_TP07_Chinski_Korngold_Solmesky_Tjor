@@ -10,6 +10,9 @@ body {
 }
 
 
+.btn {
+  font-size: inherit;
+}
 .btn, input[type="radio"]+label {
   color: white;
   cursor: pointer;
@@ -30,16 +33,18 @@ body {
   transform: translate(0);
   box-shadow: none;
 }
+a, a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+.container {
+  max-width: 50vw;
+}
 
 .reiniciarPartida {
   position: absolute;
   top: 15px;
   left: 15px;
-}
-
-a, a:hover {
-  text-decoration: none;
-  color: inherit;
 }
 
 
@@ -54,14 +59,11 @@ main {
 main .logo {
   width: 80%;
 }
-.container {
-  max-width: 50vw;
-}
 main > .container {
   background: white;
   padding: 1%;
 }
-main > .container, .card, input, .btn, input[type="radio"]+label, .respuesta {
+main > .container, .card, input, .btn, input[type="radio"]+label {
   border-radius: 10px;
 }
 body:has(> main > .index) {
@@ -82,6 +84,7 @@ main > video {
   opacity: 80%;
   z-index: -1;
 }
+
 
 #ruleta {
   position: relative;
@@ -117,6 +120,7 @@ main > video {
   cursor: pointer;
 }
 
+
 #categoriaElegida {
   display: none;
   flex-wrap: wrap;
@@ -129,28 +133,41 @@ main > video {
   width: 100%;
   height: 100%;
 }
-
 #categoriaElegida h2 {
   font-size: 50px;
   font-weight: 600;
 }
-
 #categoriaElegida div {
   position: relative;
   width: fit-content;
   order: -1;
 }
-
 #categoriaElegida div img:first-child {
   width: 30vw;
   box-shadow: 0px 0px 50px white;
 }
-
 #categoriaElegida div img:last-child {
   position: absolute;
   bottom: 10%;
   left: 9%;
   width: 5.5vw;
+}
+
+
+#pregunta .card {
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+#pregunta.correcta .card {
+  background-size: contain;
+  background-image: url("../img/Respuesta/Correcta.png");
+}
+#pregunta.incorrecta .card {
+  background-size: contain;
+  background-image: url("../img/Respuesta/Incorrecta.png");
+}
+#pregunta.correcta .card-body, #pregunta.incorrecta .card-body {
+  padding-right: 25%;
 }
 
 
@@ -161,13 +178,16 @@ input[type="radio"]+label {
   cursor: pointer;
 }
 
-label {
+label, #pregunta .btn.disabled {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1% 5%;
+  margin: 1% 0%;
 }
-label img {
+#pregunta .btn.disabled {
+  opacity: 0.8;
+}
+label img, #pregunta .btn.btn.disabled img {
   width: auto;
   height: 50px;
 }
@@ -193,6 +213,10 @@ input[type="text"]:hover {
 }
 label[for="dificultad-todas"], label[for="categoria-todas"] {
   font-weight: 700;
+}
+
+#pregunta .btn.disabled {
+  width: 100%;
 }
 
 .form-check {
