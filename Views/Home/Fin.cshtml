@@ -19,11 +19,12 @@
     {
         <div class="textoFin"><h1>@ViewBag.Username, ganaste. Ganador.</h1></div>
         <img class="img-fluid" src="~/img/Fin/GoodEnding.jpg" alt="Foto de Good Ending">
+         <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     }
     <p class="text-center fs-3">Terminaste con @ViewBag.PuntajeActual ₧. @ViewBag.ReaccionPuntaje</p>
     <p><a class="btn" href="@Url.Action("ConfigurarJuego")">↻ Reiniciar</a></p>
 
- <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
 
  <script>
 
