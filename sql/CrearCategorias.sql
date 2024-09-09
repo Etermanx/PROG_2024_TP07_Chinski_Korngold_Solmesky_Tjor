@@ -8,4 +8,4 @@ VALUES
     ('Deportes', 'https://cdn.pixabay.com/photo/2013/07/13/10/50/tennis-ball-157884_960_720.png'),
     ('Arte y literatura', 'https://cdn.pixabay.com/photo/2016/07/12/19/20/palette-1512871_960_720.png'),
     ('Entretenimiento', 'https://cdn.pixabay.com/photo/2013/07/12/14/47/tv-148809_960_720.png'),
-    ('Cambalache', NULL);
+    ('Random', NULL);
