@@ -33,7 +33,7 @@
             {
                 foreach (Respuesta respuesta in ViewBag.ProximasRespuestas)
                 {
-                    <p class="btn disabled @if (respuesta.Correcta) { <text>bg-success</text> } else if (ViewBag.IdRespuestaDada == respuesta.IdRespuesta) { <text>bg-danger</text> }">
+                    <p class="btn disabled @if (respuesta.Correcta) { <text>bg-success</text> } else if (ViewBag.IdRespuestaDada == respuesta.IdRespuesta) { <text>bg-danger</text> } else { <text>bg-white text-black</text> } ">
                         @if (respuesta.Foto != null)
                         {
                             <img src="@respuesta.Foto" alt="Foto de @respuesta.Contenido">
