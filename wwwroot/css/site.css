@@ -313,6 +313,17 @@ label[for="dificultad-todas"], label[for="categoria-todas"] {
 
 .footer {
   padding: 20px 5px; 
+  line-height: 62px;
+  text-align: center;
+}
+footer .redes-sociales {
+  margin-bottom: 20px;
+}
+footer .redes-sociales a {
+  margin: 0 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 24px;
 }
 
 @keyframes marquee {
