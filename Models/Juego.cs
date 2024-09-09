@@ -95,18 +95,17 @@ public static class Juego
     public static Pregunta? ObtenerPreguntaLista(int idPregunta)
     {
         int posPregunta = BuscarPregunta(idPregunta);
-        Pregunta? pregunta;
+        Pregunta? pregunta = null;
 
         if (posPregunta != -1)
             pregunta = preguntas[posPregunta];
-        else
-            pregunta = null;
 
         return pregunta;
     }
     public static bool VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-        bool correcta = BuscarRespuestaCorrecta(idRespuesta);
+        int posRespuesta = BuscarRespuesta(idRespuesta);
+        bool correcta = posRespuesta != -1 && respuestas[posRespuesta].Correcta;
 
         if (correcta)
         {
@@ -119,8 +118,12 @@ public static class Juego
     }
     public static Respuesta? ObtenerRespuestaCorrecta(int idPregunta)
     {
+        int posRespuesta = BuscarRespuestaCorrecta(idPregunta);
         Respuesta? respuestaCorrecta = null;
-        respuestaCorrecta = BD.RespuestaCorrecta(idPregunta);
+
+        if (posRespuesta != -1)
+            respuestaCorrecta = respuestas[posRespuesta];
+
         return respuestaCorrecta;
     }
     public static int ObtenerPuntajeActual()
@@ -143,9 +146,18 @@ public static class Juego
             posPregunta--;
         return posPregunta;
     }
-    private static bool BuscarRespuestaCorrecta(int idRespuesta)
+    private static int BuscarRespuesta(int idRespuesta)
     {
-        bool correcto = BD.EsCorrecta(idRespuesta);
-        return correcto;
+        int posRespuesta = respuestas.Count - 1;
+        while (posRespuesta >= 0 && respuestas[posRespuesta].IdRespuesta != idRespuesta)
+            posRespuesta--;
+        return posRespuesta;
+    }
+    private static int BuscarRespuestaCorrecta(int idPregunta)
+    {
+        int posRespuesta = respuestas.Count - 1;
+        while (posRespuesta >= 0 && (idPregunta != respuestas[posRespuesta].IdPregunta || !respuestas[posRespuesta].Correcta))
+            posRespuesta--;
+        return posRespuesta;
     }
 }

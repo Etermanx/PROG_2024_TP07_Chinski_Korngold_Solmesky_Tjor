@@ -29,7 +29,7 @@ public static class BD
         string sql = "EXEC SP_ObtenerPreguntas @dificultad, @categoria";
         List<Pregunta> listadoPreguntas = new List<Pregunta>();
 
-        using(SqlConnection BD = new SqlConnection(CONNECTION_STRING))
+        using (SqlConnection BD = new SqlConnection(CONNECTION_STRING))
         {
             listadoPreguntas = BD.Query<Pregunta>(sql, new {dificultad, categoria} ).ToList();
         }
@@ -60,25 +60,5 @@ public static class BD
             idPreguntas[i] = preguntas[i].IdPregunta;
 
         return idPreguntas;
-    }
-
-    public static bool EsCorrecta(int idRespuesta){
-        bool Correcta=false;
-        using(SqlConnection db = new SqlConnection(CONNECTION_STRING)){
-            string sql= "Select Correcta from Respuestas where IdRespuesta=@pIdRespuesta";
-            Correcta = db.QueryFirstOrDefault<bool>(sql, new{pIdRespuesta=idRespuesta});
-        }
-        return Correcta;
-    }
-
-    public static Respuesta? RespuestaCorrecta(int idPregunta){
-
-        Respuesta? respuestaCorrecta;
-        using(SqlConnection db = new SqlConnection(CONNECTION_STRING)){
-            string sql= "SELECT TOP(1) * FROM Respuestas WHERE IdPregunta = @pIdPregunta AND Correcta = 1";
-            respuestaCorrecta = db.QueryFirstOrDefault<Respuesta>(sql, new{ pIdPregunta = idPregunta });
-        }
-        return respuestaCorrecta;
-
     }
 }
