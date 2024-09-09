@@ -5,14 +5,18 @@
 <div class="container">
     <h1>Muy bien</h1>
     <p>@ViewBag.Mensaje</p>
-    <p>@ViewBag.username</p>
-    
-    <div>
-        <a class="boton" href="@Url.Action("ConfigurarJuego")">🔄 Volver a jugar</a>
-        <a class="boton" href="@Url.Action("Creditos")">👥 Créditos</a>
-    </div>
+    <p></p>
 
-    <div class="imagenInteractiva">
-        <a id="ustedes" href="https://www.youtube.com/watch?v=jZiYZbh78uY"><img src="~/img/Winner.jpg" alt="Fernanfloo (ustedes)"></a>
-    </div>
+    @if (ViewBag.Perdido)
+    {
+        <div class="textoFin"><p>textoFin</p></div>
+        <img class="img-fluid" src="~/img/Fin/GoodEnding.jpg" alt="Foto de Good Ending">
+    }
+    else
+    {
+        <div class="textoFin bg-black text-white"><p>SE ACABO EL TIEMPO</p></div>
+        <img class="img-fluid" src="~/img/Fin/BadEnding.png" alt="Foto de Bad Ending">
+    }
+    
+    <p>@ViewBag.username</p>
 </div>

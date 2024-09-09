@@ -127,7 +127,13 @@ public class HomeController : Controller
     }
     public IActionResult Fin()
     {
-        return View();
+        if (Juego.ComprobarHayPartida())
+        {
+            ViewBag.Perdido = Juego.ComprobarPerdido();
+            return View();
+        }
+        else
+            return RedirectToAction("ConfigurarJuego");
     }
 
 }
