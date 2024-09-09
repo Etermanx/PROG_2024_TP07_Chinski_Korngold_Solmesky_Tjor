@@ -1,22 +1,25 @@
 @{
     ViewBag.Titulo = "Fin";
+
+    @if (ViewBag.PuntajeActual < 0)
+        ViewBag.ReaccionPuntaje = "Damn... Pasa.";
+    else if (ViewBag.PuntajeActual == 0)
+        ViewBag.ReaccionPuntaje = "Se puede remontar.";
+    else
+        ViewBag.ReaccionPuntaje = ":D";
 }
 
-<div class="container">
-    <h1>Muy bien</h1>
-    <p>@ViewBag.Mensaje</p>
-    <p></p>
-
+<div class="container text-white @if (ViewBag.Perdido) { <text>bg-dark</text> } else { <text>bg-warning</text> }">
     @if (ViewBag.Perdido)
     {
-        <div class="textoFin"><p>textoFin</p></div>
-        <img class="img-fluid" src="~/img/Fin/GoodEnding.jpg" alt="Foto de Good Ending">
+        <div class="textoFin"><h1>Se te acabó el tiempo, @ViewBag.Username...</h1></div>
+        <img class="img-fluid" src="~/img/Fin/BadEnding.png" alt="Foto de Bad Ending">
     }
     else
     {
-        <div class="textoFin bg-black text-white"><p>SE ACABO EL TIEMPO</p></div>
-        <img class="img-fluid" src="~/img/Fin/BadEnding.png" alt="Foto de Bad Ending">
+        <div class="textoFin"><h1>@ViewBag.Username, ganaste. Ganador.</h1></div>
+        <img class="img-fluid" src="~/img/Fin/GoodEnding.jpg" alt="Foto de Good Ending">
     }
-    
-    <p>@ViewBag.username</p>
+    <p class="text-center fs-3">Terminaste con @ViewBag.PuntajeActual ₧. @ViewBag.ReaccionPuntaje</p>
+    <p><a class="btn" href="@Url.Action("ConfigurarJuego")">↻ Reiniciar</a></p>
 </div>

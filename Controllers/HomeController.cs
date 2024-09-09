@@ -130,6 +130,8 @@ public class HomeController : Controller
         if (Juego.ComprobarHayPartida())
         {
             ViewBag.Perdido = Juego.ComprobarPerdido();
+            ViewBag.Username = Juego.ObtenerUsername();
+            ViewBag.PuntajeActual = Juego.ObtenerPuntajeActual();
             return View();
         }
         else
