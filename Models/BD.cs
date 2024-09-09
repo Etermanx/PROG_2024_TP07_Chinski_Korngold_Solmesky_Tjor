@@ -10,7 +10,7 @@ public static class BD
     {   
         using (SqlConnection BD = new SqlConnection(CONNECTION_STRING))
         {   
-            string sql = "SELECT * FROM Categorias";
+            string sql = "EXEC SP_ObtenerCategorias";
             return BD.Query<Categoria>(sql).ToList();
         }
     }
@@ -19,14 +19,14 @@ public static class BD
     {
         using (SqlConnection BD = new SqlConnection(CONNECTION_STRING))
         {
-            string sql = "SELECT * FROM Dificultades";
+            string sql = "EXEC SP_ObtenerDificultades";
             return BD.Query<Dificultad>(sql).ToList();
         }
     }
 
     public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria)
     {
-        string sql = "SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificultad) AND (@categoria = -1 OR IdCategoria = @categoria)";
+        string sql = "EXEC SP_ObtenerPreguntas @dificultad, @categoria";
         List<Pregunta> listadoPreguntas = new List<Pregunta>();
 
         using(SqlConnection BD = new SqlConnection(CONNECTION_STRING))
