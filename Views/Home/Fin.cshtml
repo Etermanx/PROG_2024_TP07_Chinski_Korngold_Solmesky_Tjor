@@ -22,4 +22,14 @@
     }
     <p class="text-center fs-3">Terminaste con @ViewBag.PuntajeActual ₧. @ViewBag.ReaccionPuntaje</p>
     <p><a class="btn" href="@Url.Action("ConfigurarJuego")">↻ Reiniciar</a></p>
+
+ <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
+ <script>
+
+ const jsConfetti = new JSConfetti()
+
+jsConfetti.addConfetti()
+ </script>
+      
 </div>
