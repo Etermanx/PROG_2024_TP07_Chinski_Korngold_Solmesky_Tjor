@@ -111,9 +111,9 @@ public static class Juego
         {
             puntajeActual += SUMA_PUNTAJE;
             cantidadPreguntasCorrectas++;
-            preguntas.RemoveAt(BuscarPregunta(idPregunta));
         }
 
+        preguntas.RemoveAt(BuscarPregunta(idPregunta));
         return correcta;
     }
     public static Respuesta? ObtenerRespuestaCorrecta(int idPregunta)

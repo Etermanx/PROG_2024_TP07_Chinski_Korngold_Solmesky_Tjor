@@ -2,7 +2,7 @@
     ViewBag.Titulo = "Configurar juego";
 }
 
-<div class="container fueraJuego">
+<div class="container">
     <h1>Configurar</h1>
     <form class="needs-validation" method="GET" action="@Url.Action("Comenzar")" novalidate>
         @if (ViewBag.Error != null)
@@ -76,7 +76,7 @@
             <p class="invalid-feedback">Seleccione un nombre de usuario.</p>
         </div>
         <div>
-            <input class="btn btn-primary" type="submit" value="¡Jugar!">
+            <input class="btn" type="submit" value="¡Jugar!">
         </div>
     </form>
 </div>  

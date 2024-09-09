@@ -28,7 +28,7 @@ body {
   transform: translate(-0.25rem, -0.25rem);
   box-shadow: 0.25rem 0.25rem black;
 }
-.btn:active { 
+.btn-check:focus + .btn, .btn:focus {
   transform: translate(0);
   box-shadow: none;
 }
@@ -43,7 +43,7 @@ a, a:hover {
   max-width: 50vw;
 }
 
-.reiniciarPartida {
+.btnFlotante {
   position: absolute;
   top: 15px;
   left: 15px;
@@ -210,8 +210,9 @@ input[type="text"]:focus {
   background: transparent;
   outline: none;
 }
-input[type="text"]:hover {
+input[type="text"]:hover, .form-control:focus {
   border-bottom: solid 1px #686868;
+  box-shadow: none;
 }
 label[for="dificultad-todas"], label[for="categoria-todas"] {
   font-weight: 700;

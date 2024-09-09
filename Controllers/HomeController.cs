@@ -70,7 +70,7 @@ public class HomeController : Controller
                 return View("Jugar");
             }
             else
-                return View("Fin");
+                return RedirectToAction("Fin");
         }
         else
             return RedirectToAction("ConfigurarJuego");
