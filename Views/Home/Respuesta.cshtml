@@ -5,6 +5,7 @@
         ViewBag.Mensaje = "Segui participando";
 
     ViewBag.Titulo = ViewBag.Mensaje;
+    ViewBag.Estilo = $"body {{ background: #{ViewBag.ColorCategoria}; }}";
 }
 
 <a class="btn btnFlotante" href="@Url.Action("ConfigurarJuego")">&larr; Reiniciar Partida</a>

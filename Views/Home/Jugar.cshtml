@@ -1,5 +1,6 @@
 @{
     ViewBag.Titulo = "Jugar";
+    ViewBag.Estilo = $"body {{ background: #{ViewBag.ColorCategoria}; }}";
 }
 
 <a class="btn btnFlotante" href="@Url.Action("ConfigurarJuego")">&larr; Reiniciar Partida</a>
@@ -33,7 +34,7 @@
     </div>
 }
 <div id="pregunta" class="container">
-  <div class="card">
+    <div class="card text-center">
         @if (ViewBag.ProximaPregunta.Foto != null)
         {
             <img src="@ViewBag.ProximaPregunta.Foto" class="card-img-top" alt="Foto de la pregunta">

@@ -60,9 +60,10 @@ public class HomeController : Controller
 
             if (ViewBag.ProximaPregunta != null || Juego.ComprobarPerdido())
             {
+                ViewBag.Categorias = BD.ObtenerCategorias();
+                ViewBag.ColorCategoria = BD.ExtraerColorCategoria(ViewBag.ProximaPregunta.IdCategoria, ViewBag.Categorias);
                 if (Juego.ComprobarCategoriaEsTodo())
                 {
-                    ViewBag.Categorias = BD.ObtenerCategorias();
                     ViewBag.PosProximaCategoria = Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, ViewBag.Categorias);
                     ViewBag.ProximaCategoria = ViewBag.Categorias[ViewBag.PosProximaCategoria];
                 }
@@ -80,6 +81,7 @@ public class HomeController : Controller
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
     {
         bool perdido;
+        List<Categoria> categorias;
 
         if (Juego.ComprobarHayPartida())
         {
@@ -88,17 +90,20 @@ public class HomeController : Controller
 
             if (idPregunta > 0 && idRespuesta > 0 && !perdido && ViewBag.ProximaPregunta != null)
             {
+                categorias = BD.ObtenerCategorias();
+                ViewBag.ColorCategoria = BD.ExtraerColorCategoria(ViewBag.ProximaPregunta.IdCategoria, categorias);
+
                 ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
                 ViewBag.RespuestaReal = Juego.ObtenerRespuestaCorrecta(idPregunta);
                 ViewBag.IdRespuestaDada = idRespuesta;
+
                 ViewBag.Correcta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
                 ViewBag.PuntajeActual = Juego.ObtenerPuntajeActual();
+
                 return View("Respuesta");
             }
             else if (perdido)
-            {
                 return RedirectToAction("Fin");
-            }
             else
                 return RedirectToAction("Jugar");
         }

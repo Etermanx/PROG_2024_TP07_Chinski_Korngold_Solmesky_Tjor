@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="~/lib/fontawesome/css/brands.min.css"  asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/fontawesome.min.css"  asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @if (ViewBag.Estilo != null)
+    {
+        <style>
+            @ViewBag.Estilo
+        </style>
+    }
 </head>
 <body>
     <main role="main" class="pb-3">

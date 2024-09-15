@@ -23,20 +23,22 @@ function girarA(numeroSegmento) {
 }
 
 function desmontarFachada() {
-    elementoRuleta.style = "display: none;";
+    document.body.style = "";
+    elementoRuleta.style.display = "none";
     abrirSplashCategoria();
     setTimeout(() => {
-        elementoPregunta.style = "display: block;";
-        elementoCategoriaElegida.style = "display: none;";
+        elementoPregunta.style.display = "block";
+        elementoCategoriaElegida.style.display = "none";
         comenzarContador();
     }, 3000);
 }
 
 function abrirSplashCategoria() {
     var audio = new Audio("/audio/Tadaa.mp3");
-    elementoCategoriaElegida.style = "display: flex;";
+    elementoCategoriaElegida.style.display = "flex";
     audio.play();
 }
 
-elementoRuleta.style = "display: block;";
-elementoPregunta.style = "display: none;";
+document.body.style = "background: #a7d6ff;";
+elementoRuleta.style.display = "block";
+elementoPregunta.style.display = "none";
