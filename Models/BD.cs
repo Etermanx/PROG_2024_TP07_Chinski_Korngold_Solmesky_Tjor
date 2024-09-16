@@ -14,18 +14,6 @@ public static class BD
             return BD.Query<Categoria>(sql).ToList();
         }
     }
-    public static string ExtraerColorCategoria(int idCategoria, List<Categoria> categorias)
-    {
-        Categoria? categoria = categorias.Find(categoria => categoria.IdCategoria == idCategoria);
-        string color;
-
-        if (categoria != null && categoria.Color != null)
-            color = categoria.Color;
-        else
-            color = "d5d5d5";
-
-        return color;
-    }
 
     public static List<Dificultad> ObtenerDificultades()
     {

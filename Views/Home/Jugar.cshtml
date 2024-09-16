@@ -34,6 +34,17 @@
     </div>
 }
 <div id="pregunta" class="container">
+    <div class="categoriaHeader">
+        @if (ViewBag.ProximaCategoria.Foto != null)
+        {
+            <img src="@ViewBag.ProximaCategoria.Foto" alt="Icono de @ViewBag.ProximaCategoria.Nombre">
+        }
+        else
+        {
+            <img src="~/img/Placeholder.bmp" alt="Placeholder">
+        }
+        <p>@ViewBag.ProximaCategoria.Nombre</p>
+    </div>
     <div class="card text-center">
         @if (ViewBag.ProximaPregunta.Foto != null)
         {

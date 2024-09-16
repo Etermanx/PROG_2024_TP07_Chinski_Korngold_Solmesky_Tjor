@@ -88,6 +88,22 @@ main > video {
 }
 
 
+.categoriaHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.categoriaHeader img {
+  height: 30px;
+  margin-right: 5px;
+}
+.categoriaHeader p {
+  font-size: 30px;
+  margin: 0;
+}
+
+
 #ruleta {
   position: relative;
   text-align: center;

@@ -11,6 +11,17 @@
 <a class="btn btnFlotante" href="@Url.Action("ConfigurarJuego")">&larr; Reiniciar Partida</a>
 
 <div id="pregunta" class="container @if (ViewBag.Correcta) { <text>correcta text-light bg-success</text> } else { <text>incorrecta text-light bg-danger</text> }">
+    <div class="categoriaHeader">
+        @if (ViewBag.ProximaCategoria.Foto != null)
+        {
+            <img src="@ViewBag.ProximaCategoria.Foto" alt="Icono de @ViewBag.ProximaCategoria.Nombre">
+        }
+        else
+        {
+            <img src="~/img/Placeholder.bmp" alt="Placeholder">
+        }
+        <p>@ViewBag.ProximaCategoria.Nombre</p>
+    </div>
     <div class="card @if (ViewBag.Correcta) { <text>bg-success</text> } else { <text>bg-danger</text> }">
         @if (ViewBag.ProximaPregunta.Foto != null)
         {

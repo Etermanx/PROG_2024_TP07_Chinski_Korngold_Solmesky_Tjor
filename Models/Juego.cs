@@ -139,6 +139,12 @@ public static class Juego
             posCategoria--;
         return posCategoria;
     }
+    public static string CambiarColorSiDefault(string color)
+    {
+        if (color == null)
+            color = "d5d5d5";
+        return color;
+    }
     private static int BuscarPregunta(int idPregunta)
     {
         int posPregunta = preguntas.Count - 1;

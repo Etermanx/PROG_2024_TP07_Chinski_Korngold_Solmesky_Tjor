@@ -54,19 +54,25 @@ public class HomeController : Controller
 
     public IActionResult Jugar()
     {
+        List<Categoria> categorias = BD.ObtenerCategorias();
+        int posProximaCategoria;
+
         if (Juego.ComprobarHayPartida())
         {
             ViewBag.ProximaPregunta = Juego.ObtenerProximaPregunta();
+            posProximaCategoria = Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, categorias);
 
             if (ViewBag.ProximaPregunta != null || Juego.ComprobarPerdido())
             {
-                ViewBag.Categorias = BD.ObtenerCategorias();
-                ViewBag.ColorCategoria = BD.ExtraerColorCategoria(ViewBag.ProximaPregunta.IdCategoria, ViewBag.Categorias);
                 if (Juego.ComprobarCategoriaEsTodo())
                 {
-                    ViewBag.PosProximaCategoria = Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, ViewBag.Categorias);
-                    ViewBag.ProximaCategoria = ViewBag.Categorias[ViewBag.PosProximaCategoria];
+                    ViewBag.PosProximaCategoria = posProximaCategoria;
+                    ViewBag.Categorias = categorias;
                 }
+                
+                ViewBag.ProximaCategoria = categorias[posProximaCategoria];
+                ViewBag.ColorCategoria = Juego.CambiarColorSiDefault(ViewBag.ProximaCategoria.Color);
+                
                 ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
                 return View("Jugar");
             }
@@ -81,18 +87,23 @@ public class HomeController : Controller
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
     {
         bool perdido;
+        int posProximaCategoria;
+        Pregunta? proximaPregunta;
         List<Categoria> categorias;
 
         if (Juego.ComprobarHayPartida())
         {
             perdido = Juego.ComprobarPerdido();
-            ViewBag.ProximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
+            proximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
 
-            if (idPregunta > 0 && idRespuesta > 0 && !perdido && ViewBag.ProximaPregunta != null)
+            if (idPregunta > 0 && idRespuesta > 0 && !perdido && proximaPregunta != null)
             {
                 categorias = BD.ObtenerCategorias();
-                ViewBag.ColorCategoria = BD.ExtraerColorCategoria(ViewBag.ProximaPregunta.IdCategoria, categorias);
+                posProximaCategoria = Juego.BuscarCategoriaLista(proximaPregunta.IdCategoria, categorias);
+                ViewBag.ProximaCategoria = categorias[posProximaCategoria];
+                ViewBag.ColorCategoria = Juego.CambiarColorSiDefault(ViewBag.ProximaCategoria.Color);
 
+                ViewBag.ProximaPregunta = proximaPregunta;
                 ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
                 ViewBag.RespuestaReal = Juego.ObtenerRespuestaCorrecta(idPregunta);
                 ViewBag.IdRespuestaDada = idRespuesta;
@@ -109,12 +120,6 @@ public class HomeController : Controller
         }
         else
             return RedirectToAction("ConfigurarJuego");
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
     public IActionResult Respuesta()
@@ -143,4 +148,10 @@ public class HomeController : Controller
             return RedirectToAction("ConfigurarJuego");
     }
 
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
 }
