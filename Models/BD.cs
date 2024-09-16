@@ -51,6 +51,29 @@ public static class BD
         return listadoRespuestas;
     }
 
+    public static List<HighScore> ObtenerHighScores()
+    {
+        string sql = "EXEC SP_ObtenerHighScores;";
+        List<HighScore> listadoHighScores;
+        
+        using(SqlConnection BD = new SqlConnection(CONNECTION_STRING))
+        {
+            listadoHighScores = BD.Query<HighScore>(sql).ToList();
+        }
+
+        return listadoHighScores;
+    }
+
+    public static void SubirHighScore(string username, int puntaje)
+    {
+        string sql = "EXEC SP_SubirHighScore @pUsername, @pPuntaje;";
+        
+        using(SqlConnection BD = new SqlConnection(CONNECTION_STRING))
+        {
+            BD.Execute(sql, new { pUsername = username, pPuntaje = puntaje });
+        }
+    }
+
     private static int[] ExtraerIdPreguntas(List<Pregunta> preguntas)
     {
         int cantPreguntas = preguntas.Count;

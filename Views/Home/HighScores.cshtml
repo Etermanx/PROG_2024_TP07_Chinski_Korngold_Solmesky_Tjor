@@ -1,0 +1,37 @@
+@{
+    ViewBag.Titulo = "High Scores";
+}
+
+<a class="btn btnFlotante" href="javascript:history.back();">&larr; Volver</a>
+
+<div class="container">
+    <h1>High Scores</h1>
+    @if (ViewBag.HighScores.Count > 0)
+    {
+        <table class="table table-striped-columns">
+            <thead>
+                <tr>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Puntaje</th>
+                </tr>
+                @for (int i = 0; i < ViewBag.HighScores.Count; i++)
+                {
+                    <tr @if (i == 0) { <text>class="table-warning"</text> }>
+                        <th>#@(i + 1)</th>
+                        <td>@ViewBag.HighScores[i].Username</td>
+                        <td>@ViewBag.HighScores[i].Fecha.ToString("u")</td>
+                        <td>@ViewBag.HighScores[i].Puntaje ₧.</td>
+                    </tr>
+                }
+            </thead>
+        </table>
+    }
+    else
+    {
+        <p class="text-secondary text-center">No hay high scores. <a class="fst-italic link-underline-secondary" href="@Url.Action("ConfigurarJuego")">(Vos podrias ser el primero)</a></p>
+    }
+</div>
+
+<script src="~/js/Creditos.js" asp-append-version="true"></script>

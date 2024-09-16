@@ -24,6 +24,15 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Creditos()
+    {
+        return View();
+    }
+    public IActionResult HighScores()
+    {
+        ViewBag.HighScores = BD.ObtenerHighScores();
+        return View();
+    }
 
     public IActionResult ConfigurarJuego()
     {
@@ -122,19 +131,6 @@ public class HomeController : Controller
             return RedirectToAction("ConfigurarJuego");
     }
 
-    public IActionResult Respuesta()
-    {
-        return View();
-    }
-    public IActionResult Creditos()
-    {
-        return View();
-    }
-    public IActionResult CambiarEstadoPerdido()
-    {
-        Juego.CambiarEstadoPerdido();
-        return Content("", "text/plain");
-    }
     public IActionResult Fin()
     {
         if (Juego.ComprobarHayPartida())
@@ -142,12 +138,19 @@ public class HomeController : Controller
             ViewBag.Perdido = Juego.ComprobarPerdido();
             ViewBag.Username = Juego.ObtenerUsername();
             ViewBag.PuntajeActual = Juego.ObtenerPuntajeActual();
+            BD.SubirHighScore(ViewBag.Username, ViewBag.PuntajeActual);
+            Juego.DescrearPartida();
             return View();
         }
         else
             return RedirectToAction("ConfigurarJuego");
     }
 
+    public IActionResult CambiarEstadoPerdido()
+    {
+        Juego.CambiarEstadoPerdido();
+        return Content("", "text/plain");
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

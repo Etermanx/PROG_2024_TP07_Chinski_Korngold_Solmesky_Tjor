@@ -1,7 +1,7 @@
 public static class Juego
 {
     const int SUMA_PUNTAJE = 500;
-    public static string username { get; private set; }
+    public static string? username { get; private set; }
     public static int puntajeActual { get; private set; }
     public static int cantidadPreguntasCorrectas { get; private set; }
     private static List<Pregunta> preguntas { get; set; }
@@ -41,6 +41,10 @@ public static class Juego
     public static bool ComprobarHayPartida()
     {
         return username != null;
+    }
+    public static void DescrearPartida()
+    {
+        username = null;
     }
     public static bool ComprobarHayPreguntas()
     {
