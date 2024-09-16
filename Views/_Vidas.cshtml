@@ -1,0 +1,15 @@
+@model Vida
+
+<p class="vidas">
+    @for (int i = 0; i < Model.TotalVidas; i++)
+    {
+        if (i < Model.ActualVidas)
+        {
+            <img src="~/img/Vida.png" alt="Vida">
+        }
+        else
+        {
+            <img src="~/img/VidaPerdida.png" alt="Vida perdida">
+        }
+    }
+</p>

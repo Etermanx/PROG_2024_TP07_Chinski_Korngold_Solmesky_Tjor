@@ -1,12 +1,15 @@
 public static class Juego
 {
     const int SUMA_PUNTAJE = 500;
-    public static string? username { get; private set; }
-    public static int puntajeActual { get; private set; }
-    public static int cantidadPreguntasCorrectas { get; private set; }
+    const int TOTAL_VIDAS = 3;
+    private static string? username { get; set; }
+    private static int puntajeActual { get; set; }
+    private static int cantidadPreguntasCorrectas { get; set; }
+    private static int actualVidas { get; set; }
     private static List<Pregunta> preguntas { get; set; }
     private static List<Respuesta> respuestas { get; set; }
     private static bool categoriaEsTodo { get; set; }
+    private static bool jugarConVidas { get; set; }
     private static bool perdido { get; set; }
 
 
@@ -29,13 +32,18 @@ public static class Juego
         return BD.ObtenerDificultades();
     }
 
-    public static void CargarPartida(string nuevoUsername, int dificultad, int categoria)
+    public static void CargarPartida(string elUsername, int dificultad, int categoria, bool elJugarConVidas)
     {
         categoriaEsTodo = categoria == -1;
-        username = nuevoUsername; // Preguntar para que el username
+        username = elUsername;
         preguntas = BD.ObtenerPreguntas(dificultad, categoria);
         respuestas = BD.ObtenerRespuestas(preguntas);
-        perdido = false;
+        jugarConVidas = elJugarConVidas;
+
+        if (jugarConVidas)
+            actualVidas = TOTAL_VIDAS;
+        else
+            actualVidas = 1;
     }
 
     public static bool ComprobarHayPartida()
@@ -54,18 +62,31 @@ public static class Juego
     {
         return categoriaEsTodo;
     }
-    public static void CambiarEstadoPerdido()
-    {
-        perdido = !perdido;
-    }
     public static bool ComprobarPerdido()
     {
-        return perdido;
+        Console.WriteLine("actualVidas: " + actualVidas);
+        return actualVidas == 0;
+    }
+    public static bool ComprobarJugarConVidas()
+    {
+        return jugarConVidas;
     }
 
-    public static string ObtenerUsername(){
-
+    public static string? ObtenerUsername()
+    {
         return username;
+    }
+    public static int ObtenerTotalVidas()
+    {
+        return TOTAL_VIDAS;
+    }
+    public static int ObtenerActualVidas()
+    {
+        return actualVidas;
+    }
+    public static void BajarActualVidas()
+    {
+        actualVidas--;
     }
 
     public static Pregunta? ObtenerProximaPregunta()
@@ -80,9 +101,6 @@ public static class Juego
             valorRandom = rnd.Next(0, preguntas.Count);
             proximaPregunta = preguntas[valorRandom];
         }
-
-        // cambiar bd para q las preguntas puedan ser nulas(sin cant)
-        // |-> huh?
         
         return proximaPregunta;
     }

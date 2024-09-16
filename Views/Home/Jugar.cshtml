@@ -5,6 +5,11 @@
 
 <a class="btn btnFlotante" href="@Url.Action("ConfigurarJuego")">&larr; Reiniciar Partida</a>
 
+@if (ViewBag.TotalVidas != null)
+{
+    <partial name="~/Views/_Vidas.cshtml" model="new Vida { TotalVidas = ViewBag.TotalVidas, ActualVidas = ViewBag.ActualVidas }" />
+}
+
 @if (ViewBag.Categorias != null)
 {
     <div id="ruleta">

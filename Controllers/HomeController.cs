@@ -42,11 +42,11 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Comenzar(string username, int dificultad, int categoria)
+    public IActionResult Comenzar(string username, int dificultad, int categoria, bool jugarConVidas = true)
     {
         if (username != String.Empty && (dificultad > 0 || dificultad == -1) && (categoria > 0 || categoria == -1))
         {
-            Juego.CargarPartida(username, dificultad, categoria);
+            Juego.CargarPartida(username, dificultad, categoria, jugarConVidas);
             if (Juego.ComprobarHayPreguntas())
                 return RedirectToAction("Jugar");
             else
@@ -83,6 +83,13 @@ public class HomeController : Controller
                 ViewBag.ColorCategoria = Juego.CambiarColorSiDefault(ViewBag.ProximaCategoria.Color);
                 
                 ViewBag.ProximasRespuestas = Juego.ObtenerProximasRespuestas(ViewBag.ProximaPregunta.IdPregunta);
+
+                if (Juego.ComprobarJugarConVidas())
+                {
+                    ViewBag.TotalVidas = Juego.ObtenerTotalVidas();
+                    ViewBag.ActualVidas = Juego.ObtenerActualVidas();
+                }
+
                 return View("Jugar");
             }
             else
@@ -105,7 +112,7 @@ public class HomeController : Controller
             perdido = Juego.ComprobarPerdido();
             proximaPregunta = Juego.ObtenerPreguntaLista(idPregunta);
 
-            if (idPregunta > 0 && idRespuesta > 0 && !perdido && proximaPregunta != null)
+            if (idPregunta > 0 && idRespuesta > 0 && proximaPregunta != null)
             {
                 categorias = BD.ObtenerCategorias();
                 posProximaCategoria = Juego.BuscarCategoriaLista(proximaPregunta.IdCategoria, categorias);
@@ -119,6 +126,18 @@ public class HomeController : Controller
 
                 ViewBag.Correcta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
                 ViewBag.PuntajeActual = Juego.ObtenerPuntajeActual();
+
+                if (Juego.ComprobarJugarConVidas())
+                {
+                    if (!ViewBag.Correcta)
+                        Juego.BajarActualVidas();
+
+                    ViewBag.TotalVidas = Juego.ObtenerTotalVidas();
+                    ViewBag.ActualVidas = Juego.ObtenerActualVidas();
+
+                    if (ViewBag.ActualVidas <= 0)
+                        return RedirectToAction("Fin");
+                }
 
                 return View("Respuesta");
             }
@@ -146,9 +165,9 @@ public class HomeController : Controller
             return RedirectToAction("ConfigurarJuego");
     }
 
-    public IActionResult CambiarEstadoPerdido()
+    public IActionResult BajarActualVidas()
     {
-        Juego.CambiarEstadoPerdido();
+        Juego.BajarActualVidas();
         return Content("", "text/plain");
     }
 
