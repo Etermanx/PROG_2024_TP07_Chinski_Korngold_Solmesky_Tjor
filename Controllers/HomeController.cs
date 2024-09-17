@@ -42,11 +42,13 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Comenzar(string username, int dificultad, int categoria, bool jugarConVidas = true)
+    public IActionResult Comenzar(string username, int dificultad, int categoria, string jugarConVidas)
     {
+        bool verdaderoJugarConVidas = jugarConVidas != String.Empty && jugarConVidas == "on";
+
         if (username != String.Empty && (dificultad > 0 || dificultad == -1) && (categoria > 0 || categoria == -1))
         {
-            Juego.CargarPartida(username, dificultad, categoria, jugarConVidas);
+            Juego.CargarPartida(username, dificultad, categoria, verdaderoJugarConVidas);
             if (Juego.ComprobarHayPreguntas())
                 return RedirectToAction("Jugar");
             else
@@ -64,15 +66,18 @@ public class HomeController : Controller
     public IActionResult Jugar()
     {
         List<Categoria> categorias = BD.ObtenerCategorias();
+        Pregunta? proximaPregunta;
         int posProximaCategoria;
 
         if (Juego.ComprobarHayPartida())
         {
-            ViewBag.ProximaPregunta = Juego.ObtenerProximaPregunta();
-            posProximaCategoria = Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, categorias);
+            proximaPregunta = Juego.ObtenerProximaPregunta();
 
-            if (ViewBag.ProximaPregunta != null || Juego.ComprobarPerdido())
+            if (proximaPregunta != null && !Juego.ComprobarPerdido())
             {
+                ViewBag.ProximaPregunta = proximaPregunta;
+                posProximaCategoria = Juego.BuscarCategoriaLista(ViewBag.ProximaPregunta.IdCategoria, categorias);
+
                 if (Juego.ComprobarCategoriaEsTodo())
                 {
                     ViewBag.PosProximaCategoria = posProximaCategoria;
