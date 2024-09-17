@@ -64,7 +64,6 @@ public static class Juego
     }
     public static bool ComprobarPerdido()
     {
-        Console.WriteLine("actualVidas: " + actualVidas);
         return actualVidas == 0;
     }
     public static bool ComprobarJugarConVidas()
